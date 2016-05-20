@@ -1,0 +1,55 @@
+MAKEFLAGS = '-r'
+
+CC  = gcc
+CXX = g++
+
+# optimisation on debugin
+OPTIMIZATION_FLAGS = -O3 -fomit-frame-pointer
+
+# debuging
+#OPTIMIZATION_FLAGS = -g
+
+
+ifeq ($(HOSTTYPE),intel-mac)
+        MACFLAGS =  -arch x86_64
+        MACINCLUDES = -I/opt/local/include 
+endif
+
+
+CFLAGS = -Wall -pipe $(OPTIMIZATION_FLAGS) $(MACFLAGS)
+CXXFLAGS = -Wall -pipe $(OPTIMIZATION_FLAGS) $(MACFLAGS)
+
+# used image libs
+IMAGE_LIBS_CFLAGS = -DWITH_LIBPNG -DWITH_LIBJPEG -DWITH_LIBTIFF
+IMAGE_LIBS_LFLAGS = -lpng -ltiff -ljpeg -lz
+
+# archiver
+AR = ar
+
+# command to remove files
+RM = /bin/rm -rf
+
+# command to move files
+MV = /bin/mv -f
+
+# command to copy files
+CP = /bin/cp
+
+INSTALL = /usr/bin/install -c
+
+# common makefile rules
+%.o: %.cxx
+	$(CXX) $(CXXFLAGS) $(INCLUDE_PATHS) -c $< -o $@
+
+%.o: %.cpp
+	$(CXX) $(CXXFLAGS) $(INCLUDE_PATHS) -c $< -o $@
+
+%.o: %.cc
+	$(CXX) $(CXXFLAGS) $(INCLUDE_PATHS) -c $< -o $@
+
+%.o: %.c
+	$(CC) $(CXXFLAGS) $(INCLUDE_PATHS) -c $< -o $@
+
+-include depend
+
+.PHONY: all clean

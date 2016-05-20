@@ -1,0 +1,43 @@
+\hypertarget{main_intro_sec}{}\section{Introduction}\label{main_intro_sec}
+This is a documentation for the Maximally Stable Extremal Regions detector. The source files have following structure: 
+
+\begin{Code}\begin{verbatim}LL              - directory with LL library
+doc             - documentation
+extrema         - MSER detector sources
+imageutls       - wrappers for reading different image file formats
+optionGM        - command line option processing library
+utls            - various utilities used by MSER detector
+\end{verbatim}\end{Code}
+
+
+
+Directories {\bf imageutls} and {\bf option\-GM} are included only to allow build of a standalone binary. MSER detector itself depends only on the {\bf LL} and {\bf utls} library. Main part of the MSER detector is implemented in {\bf extrema} directory. Whole detector is compiled into library {\bf lib\-Extrema}. The main interface file is {\bf \hyperlink{libExtrema_8h}{lib\-Extrema.h}}.\hypertarget{main_install_sec}{}\section{Configuration}\label{main_install_sec}
+Configuration is done through the file {\bf config} in the root directory of the package. The interesting variables follows:
+
+\begin{itemize}
+\item Compiler optimisation options can be set with the variable {\tt OPTIMIZATION\_\-FLAGS}. Standard setting is: 
+
+\begin{Code}\begin{verbatim}OPTIMIZATION_FLAGS = -O3 -fomit-frame-pointer
+\end{verbatim}\end{Code}
+
+\end{itemize}
+
+
+\begin{itemize}
+\item Example binary {\bf extrema-bin} located in the directories {\bf extrema} can open images of different file formats. Images are open by the standard image libraries {\em libpng\/}, {\em libjpeg\/} and {\em libtiff\/}. While these are usually present in modern distributions, one can set the usage with the variables {\tt IMAGE\_\-LIBS\_\-CFLAGS} and {\tt IMAGE\_\-LIBS\_\-LFLAGS} : 
+
+\begin{Code}\begin{verbatim}IMAGE_LIBS_CFLAGS = -DWITH_LIBPNG -DWITH_LIBJPEG -DWITH_LIBTIFF
+IMAGE_LIBS_LFLAGS = -lpng -ltiff -ljpeg -lz
+\end{verbatim}\end{Code}
+
+\end{itemize}
+\hypertarget{main_Installation}{}\section{Installation}\label{main_Installation}
+Sources can be built by 
+
+\begin{Code}\begin{verbatim}make all
+\end{verbatim}\end{Code}
+
+ in the root directory.
+
+After succesful build, library files {\bf LL.a} and {\bf lib\-Extrema.a} are located in directories {\bf LL} and {\bf extrema}. Include file with MSER detector's interface i.e. exported functions is located in file {\bf \hyperlink{libExtrema_8h}{lib\-Extrema.h}}.\hypertarget{main_examples}{}\section{Examples}\label{main_examples}
+Examples using MSER detector interface will be available soon. However there is an example of a standalone detector that uses older interface. The example is located in {\bf extrema/extrema.cpp} ({\bf extrema-mt/extrema.cpp}). 

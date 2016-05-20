@@ -1,0 +1,5 @@
+ORIG/000.jpg
+ORIG/001.jpg
+PROC/001.jpg
+ORIG/002.jpg
+PROC/002.jpg

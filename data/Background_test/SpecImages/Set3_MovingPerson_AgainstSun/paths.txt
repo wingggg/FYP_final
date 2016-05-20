@@ -1,0 +1,5 @@
+ORIG/042.jpg
+ORIG/043.jpg
+PROC/043.jpg
+ORIG/044.jpg
+PROC/044.jpg
