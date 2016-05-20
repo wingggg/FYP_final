@@ -1,5 +1,0 @@
-ORIG/129.jpg
-ORIG/130.jpg
-PROC/130.jpg
-ORIG/131.jpg
-PROC/131.jpg
