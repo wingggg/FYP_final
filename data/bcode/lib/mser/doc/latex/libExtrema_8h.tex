@@ -1,0 +1,77 @@
+\hypertarget{libExtrema_8h}{
+\section{lib\-Extrema.h File Reference}
+\label{libExtrema_8h}\index{libExtrema.h@{libExtrema.h}}
+}
+{\tt \#include $<$algorithm$>$}\par
+{\tt \#include $<$vector$>$}\par
+{\tt \#include $<$stdio.h$>$}\par
+{\tt \#include $<$ary.h$>$}\par
+{\tt \#include \char`\"{}extrema\-Config.h\char`\"{}}\par
+{\tt \#include \char`\"{}extrema\-Params.h\char`\"{}}\par
+\subsection*{Namespaces}
+\begin{CompactItemize}
+\item 
+namespace \hyperlink{namespaceextrema}{extrema}
+\item 
+namespace \hyperlink{namespacestd}{std}
+\end{CompactItemize}
+\subsection*{Classes}
+\begin{CompactItemize}
+\item 
+struct \hyperlink{structextrema_1_1BoundaryPoint}{extrema::Boundary\-Point}
+\begin{CompactList}\small\item\em A structure that holds coordinates of a point in \hyperlink{structextrema_1_1BoundaryRegion}{Boundary\-Region} i.e. the boundary representation of a region. \item\end{CompactList}\item 
+struct \hyperlink{structextrema_1_1RLEItem}{extrema::RLEItem}
+\begin{CompactList}\small\item\em A structure that holds coordinates of a RLE element in \hyperlink{structextrema_1_1RLERegion}{RLERegion} i.e. the RLE representation of a region. \item\end{CompactList}\item 
+struct \hyperlink{structextrema_1_1Region}{extrema::Region}
+\begin{CompactList}\small\item\em A structure with common statistics of \hyperlink{structextrema_1_1BoundaryRegion}{Boundary\-Region} and \hyperlink{structextrema_1_1RLERegion}{RLERegion}. \item\end{CompactList}\item 
+struct \hyperlink{structextrema_1_1RLERegion}{extrema::RLERegion}
+\begin{CompactList}\small\item\em Description of a RLE region. \item\end{CompactList}\item 
+struct \hyperlink{structextrema_1_1BoundaryRegion}{extrema::Boundary\-Region}
+\begin{CompactList}\small\item\em Description of a boundary region. \item\end{CompactList}\item 
+struct \hyperlink{structextrema_1_1ExtremaStats}{extrema::Extrema\-Stats}
+\begin{CompactList}\small\item\em Timing statistics of the detector, gathered only if TIME\_\-STATS is set. \item\end{CompactList}\item 
+struct \hyperlink{structextrema_1_1RLEExtrema}{extrema::RLEExtrema}
+\begin{CompactList}\small\item\em Old interface structure that holds result of get\-RLEExtrema. \item\end{CompactList}\item 
+struct \hyperlink{structextrema_1_1BoundaryExtrema}{extrema::Boundary\-Extrema}
+\begin{CompactList}\small\item\em Old interface structure that holds result of get\-Boundary\-Extrema. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+Boundary\-Extrema \hyperlink{namespaceextrema_6287a927a289e58f10e7cf51a2420839}{extrema::get\-Boundary\-Extrema} (const Extrema\-Params \&params, const Extrema\-Image \&image, int both=3)
+\begin{CompactList}\small\item\em Old interface function, produces Boundary\-Regions for a given image. Computes MSERs: both=1 +, both = 2 -, or both = 3 + and -. \item\end{CompactList}\item 
+RLEExtrema \hyperlink{namespaceextrema_6898d264cefada5cdda1486f1b58b97e}{extrema::get\-RLEExtrema} (const Extrema\-Params \&par, const Extrema\-Image \&image, int both=3)
+\begin{CompactList}\small\item\em Old interface function, produces RLERegions for a given image. Computes MSERs: both=1 +, both = 2 -, or both = 3 + and -. \item\end{CompactList}\item 
+void \hyperlink{namespaceextrema_49f2f15c6abeab32c237f6e72bbd616c}{extrema::extrema\-Prepare\-Image} (const Extrema\-Params \&params, const Extrema\-Image \&image)
+\begin{CompactList}\small\item\em Prepares image for detection of MSER regions. \item\end{CompactList}\item 
+void \hyperlink{namespaceextrema_87df1ae98a67706398dc9648daa26a3e}{extrema::extrema\-Attach\-Image} (const Extrema\-Params \&params, \hyperlink{structutls_1_1Ary}{utls::BAry} $\ast$image)
+\begin{CompactList}\small\item\em Assigns already prepared image for detection of MSER regions. \item\end{CompactList}\item 
+void \hyperlink{namespaceextrema_e4ac7c42ad05534147aba146344cf851}{extrema::extrema\-Invert\-Image} ()
+\begin{CompactList}\small\item\em Inverts image in internal structure. \item\end{CompactList}\item 
+void \hyperlink{namespaceextrema_2a64706a17a785da80d6a1df11aa8229}{extrema::extrema\-Boundary\-Regions} (const Extrema\-Params \&params, bool inverted, vector$<$ Boundary\-Region $>$ \&result)
+\begin{CompactList}\small\item\em Detects MSERs inverted or not inverted image. \item\end{CompactList}\item 
+void \hyperlink{namespaceextrema_9fa30526dfadd23b9730cb38c5e4ef88}{extrema::extrema\-Boundary\-Ell\-Regions} (const Extrema\-Params \&params, bool inverted, vector$<$ Boundary\-Region $>$ \&result)
+\begin{CompactList}\small\item\em Detects MSERs inverted or not inverted image and computes centroids and second moments of each region. \item\end{CompactList}\item 
+void \hyperlink{namespaceextrema_f2c9422458c9780b00bb0ec050f97124}{extrema::extrema\-RLERegions} (const Extrema\-Params \&params, bool inverted, vector$<$ RLERegion $>$ \&result)
+\begin{CompactList}\small\item\em Detects MSERs inverted or not inverted image and computes centroids and second moments of each region. \item\end{CompactList}\item 
+void \hyperlink{namespaceextrema_5abe959d6add34bf6baa0c2024340a68}{extrema::extrema\-Cleanup} (bool detach\_\-only=false)
+\begin{CompactList}\small\item\em Cleans up internal image structure. \item\end{CompactList}\item 
+const Extrema\-Stats \& \hyperlink{namespaceextrema_b329cf4824c4a326bb4ead6855531c76}{extrema::extrema\-Stats} ()
+\begin{CompactList}\small\item\em Returns timing statistics. \item\end{CompactList}\item 
+void \hyperlink{namespaceextrema_58eea100971137f5cec506645277cee0}{extrema::export\-RLEVector} (FILE $\ast$fid, vector$<$ RLERegion $>$ \&rle\_\-vector)
+\item 
+void \hyperlink{namespaceextrema_db847a7fd375f76760e321deb99b5e45}{extrema::export\-Boundary\-Vector} (FILE $\ast$fid, vector$<$ Boundary\-Region $>$ \&boundary\_\-vector)
+\item 
+void \hyperlink{namespaceextrema_c167f43bca8c70f36b431ba71daff257}{extrema::export\-Boundary\-Vector\-GF} (FILE $\ast$fid, vector$<$ Boundary\-Region $>$ \&boundary\_\-vector)
+\item 
+void \hyperlink{namespaceextrema_55d2b078be8022879998650901d734a1}{extrema::export\-Aff\-Vector} (FILE $\ast$fid, vector$<$ RLERegion $>$ \&rle\_\-vector, double factor, int krys\_\-compat)
+\item 
+void \hyperlink{namespaceextrema_905de593c22e4be0daf5d1109aaa527c}{extrema::RLE2Ellipse} (const vector$<$ RLEItem $>$ \&rle, double \&bar\-X, double \&bar\-Y, double \&sum\-X2, double \&sum\-XY, double \&sum\-Y2)
+\item 
+void \hyperlink{namespaceextrema_58b3b98f8ba949fa8d8ec9dc449d52f9}{extrema::Reduced\-Boundary2RLE} (vector$<$ Boundary\-Point $>$ \&reduced\_\-boundary, vector$<$ RLEItem $>$ \&rle)
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Interface of MSER detector.
+
+This file contains main external interface of the MSERs detector. 

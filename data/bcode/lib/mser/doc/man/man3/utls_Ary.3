@@ -1,0 +1,203 @@
+.TH "utls::Ary" 3 "22 Oct 2006" "Doxygen" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+utls::Ary \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <ary.h>\fP
+.PP
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef PixelType \fBvalue\fP"
+.br
+.ti -1c
+.RI "typedef PixelType * \fBpointer\fP"
+.br
+.ti -1c
+.RI "typedef PixelType ** \fBrow_pointer\fP"
+.br
+.ti -1c
+.RI "typedef int \fBsize_type\fP"
+.br
+.ti -1c
+.RI "typedef int \fBcoord_type\fP"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBAry\fP ()"
+.br
+.ti -1c
+.RI "\fBAry\fP (\fBcoord_type\fP fr, \fBcoord_type\fP lr, \fBcoord_type\fP fc, \fBcoord_type\fP lc, \fBpointer\fP attach_to=0)"
+.br
+.ti -1c
+.RI "\fBAry\fP (\fBcoord_type\fP nrows, \fBcoord_type\fP ncols, \fBpointer\fP attach_to=0)"
+.br
+.ti -1c
+.RI "\fBAry\fP (const \fBAry\fP &other, bool do_copy=true, bool do_attach=false)"
+.br
+.ti -1c
+.RI "\fB~Ary\fP ()"
+.br
+.ti -1c
+.RI "\fBpointer\fP \fBptr\fP () const "
+.br
+.ti -1c
+.RI "\fBsize_type\fP \fBrows\fP () const "
+.br
+.ti -1c
+.RI "\fBsize_type\fP \fBcols\fP () const "
+.br
+.ti -1c
+.RI "\fBsize_type\fP \fBsize\fP () const "
+.br
+.ti -1c
+.RI "bool \fBisin\fP (\fBcoord_type\fP row, \fBcoord_type\fP col) const "
+.br
+.ti -1c
+.RI "void \fBcons\fP (\fBcoord_type\fP firstrow, \fBcoord_type\fP lastrow, \fBcoord_type\fP firstcol, \fBcoord_type\fP lastcol, \fBpointer\fP attach_to)"
+.br
+.ti -1c
+.RI "void \fBclear\fP ()"
+.br
+.ti -1c
+.RI "void \fBset\fP (const PixelType &\fBvalue\fP)"
+.br
+.ti -1c
+.RI "void \fBdetach\fP ()"
+.br
+.ti -1c
+.RI "\fBAry\fP * \fBcopy\fP () const "
+.br
+.ti -1c
+.RI "void \fBcopy\fP (const \fBAry\fP &from)"
+.br
+.ti -1c
+.RI "void \fBcopy\fP (const \fBAry\fP *from)"
+.br
+.ti -1c
+.RI "void \fBdeallocate\fP ()"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBcoord_type\fP \fBlb1\fP"
+.br
+.ti -1c
+.RI "\fBcoord_type\fP \fBlb2\fP"
+.br
+.ti -1c
+.RI "\fBcoord_type\fP \fBub1\fP"
+.br
+.ti -1c
+.RI "\fBcoord_type\fP \fBub2\fP"
+.br
+.ti -1c
+.RI "\fBsize_type\fP \fBnum_rows\fP"
+.br
+.ti -1c
+.RI "\fBsize_type\fP \fBnum_cols\fP"
+.br
+.ti -1c
+.RI "\fBpointer\fP \fBdata\fP"
+.br
+.ti -1c
+.RI "\fBrow_pointer\fP \fBel\fP"
+.br
+.ti -1c
+.RI "int \fBtag\fP"
+.br
+.ti -1c
+.RI "void * \fBuser_data\fP"
+.br
+.in -1c
+
+.SS "template<typename PixelType> struct utls::Ary< PixelType >"
+
+.SH "Member Typedef Documentation"
+.PP 
+.SS "template<typename PixelType> typedef int \fButls::Ary\fP< PixelType >::\fBcoord_type\fP"
+.PP
+.SS "template<typename PixelType> typedef PixelType* \fButls::Ary\fP< PixelType >::\fBpointer\fP"
+.PP
+.SS "template<typename PixelType> typedef PixelType** \fButls::Ary\fP< PixelType >::\fBrow_pointer\fP"
+.PP
+.SS "template<typename PixelType> typedef int \fButls::Ary\fP< PixelType >::\fBsize_type\fP"
+.PP
+.SS "template<typename PixelType> typedef PixelType \fButls::Ary\fP< PixelType >::\fBvalue\fP"
+.PP
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<typename PixelType> \fButls::Ary\fP< PixelType >::\fBAry\fP ()\fC [inline]\fP"
+.PP
+.SS "template<typename PixelType> \fButls::Ary\fP< PixelType >::\fBAry\fP (\fBcoord_type\fP fr, \fBcoord_type\fP lr, \fBcoord_type\fP fc, \fBcoord_type\fP lc, \fBpointer\fP attach_to = \fC0\fP)\fC [inline]\fP"
+.PP
+.SS "template<typename PixelType> \fButls::Ary\fP< PixelType >::\fBAry\fP (\fBcoord_type\fP nrows, \fBcoord_type\fP ncols, \fBpointer\fP attach_to = \fC0\fP)\fC [inline]\fP"
+.PP
+.SS "template<typename PixelType> \fButls::Ary\fP< PixelType >::\fBAry\fP (const \fBAry\fP< PixelType > & other, bool do_copy = \fCtrue\fP, bool do_attach = \fCfalse\fP)\fC [inline]\fP"
+.PP
+.SS "template<typename PixelType> \fButls::Ary\fP< PixelType >::~\fBAry\fP ()\fC [inline]\fP"
+.PP
+.SH "Member Function Documentation"
+.PP 
+.SS "template<typename PixelType> void \fButls::Ary\fP< PixelType >::clear ()\fC [inline]\fP"
+.PP
+.SS "template<typename PixelType> \fBsize_type\fP \fButls::Ary\fP< PixelType >::cols () const\fC [inline]\fP"
+.PP
+.SS "template<typename PixelType> void \fButls::Ary\fP< PixelType >::cons (\fBcoord_type\fP firstrow, \fBcoord_type\fP lastrow, \fBcoord_type\fP firstcol, \fBcoord_type\fP lastcol, \fBpointer\fP attach_to)\fC [inline]\fP"
+.PP
+.SS "template<typename PixelType> void \fButls::Ary\fP< PixelType >::copy (const \fBAry\fP< PixelType > * from)\fC [inline]\fP"
+.PP
+.SS "template<typename PixelType> void \fButls::Ary\fP< PixelType >::copy (const \fBAry\fP< PixelType > & from)\fC [inline]\fP"
+.PP
+.SS "template<typename PixelType> \fBAry\fP* \fButls::Ary\fP< PixelType >::copy () const\fC [inline]\fP"
+.PP
+.SS "template<typename PixelType> void \fButls::Ary\fP< PixelType >::deallocate ()\fC [inline]\fP"
+.PP
+.SS "template<typename PixelType> void \fButls::Ary\fP< PixelType >::detach ()\fC [inline]\fP"
+.PP
+.SS "template<typename PixelType> bool \fButls::Ary\fP< PixelType >::isin (\fBcoord_type\fP row, \fBcoord_type\fP col) const\fC [inline]\fP"
+.PP
+.SS "template<typename PixelType> \fBpointer\fP \fButls::Ary\fP< PixelType >::ptr () const\fC [inline]\fP"
+.PP
+.SS "template<typename PixelType> \fBsize_type\fP \fButls::Ary\fP< PixelType >::rows () const\fC [inline]\fP"
+.PP
+.SS "template<typename PixelType> void \fButls::Ary\fP< PixelType >::set (const PixelType & value)\fC [inline]\fP"
+.PP
+.SS "template<typename PixelType> \fBsize_type\fP \fButls::Ary\fP< PixelType >::size () const\fC [inline]\fP"
+.PP
+.SH "Member Data Documentation"
+.PP 
+.SS "template<typename PixelType> \fBpointer\fP \fButls::Ary\fP< PixelType >::\fBdata\fP"
+.PP
+.SS "template<typename PixelType> \fBrow_pointer\fP \fButls::Ary\fP< PixelType >::\fBel\fP"
+.PP
+.SS "template<typename PixelType> \fBcoord_type\fP \fButls::Ary\fP< PixelType >::\fBlb1\fP"
+.PP
+.SS "template<typename PixelType> \fBcoord_type\fP \fButls::Ary\fP< PixelType >::\fBlb2\fP"
+.PP
+.SS "template<typename PixelType> \fBsize_type\fP \fButls::Ary\fP< PixelType >::\fBnum_cols\fP"
+.PP
+.SS "template<typename PixelType> \fBsize_type\fP \fButls::Ary\fP< PixelType >::\fBnum_rows\fP"
+.PP
+.SS "template<typename PixelType> int \fButls::Ary\fP< PixelType >::\fBtag\fP"
+.PP
+.SS "template<typename PixelType> \fBcoord_type\fP \fButls::Ary\fP< PixelType >::\fBub1\fP"
+.PP
+.SS "template<typename PixelType> \fBcoord_type\fP \fButls::Ary\fP< PixelType >::\fBub2\fP"
+.PP
+.SS "template<typename PixelType> void* \fButls::Ary\fP< PixelType >::\fBuser_data\fP"
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen from the source code.

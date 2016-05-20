@@ -1,0 +1,19 @@
+
+This directory contains code for detecting SIFT keys in images.
+
+Following finds SIFT keys in a Vista image, and outputs a file
+with the image overlayed with keys:
+
+% sift <../images/cafe.v >result.v
+
+
+Some parameters that can be changed (change in code)
+-----------------------------------
+
+Set DoubleImSize = TRUE in key.c to find 4 times as many SIFT keys.
+  This doubles the image size first before processing, effectively
+  doubling image resolution.
+
+KeyDisplaySize = 0.4.  This can be increased or decreased to change
+  the output size of each key square.
+
