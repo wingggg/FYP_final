@@ -298,16 +298,16 @@
 /home/karenng/Desktop/FYP_final/data/Background_test/SY31/IMG_0151.JPG 1 0 1 2 3 4 5 8
 /home/karenng/Desktop/FYP_final/data/Background_test/SY31/IMG_0154.JPG 1 0 1 2 3 4 5
 /home/karenng/Desktop/FYP_final/data/Background_test/SY31/IMG_0157.JPG 1 0 1 2 3 4 6
-/home/karenng/Desktop/FYP_final/data/Background_test/SY31/IMG_1163.JPG 0
-/home/karenng/Desktop/FYP_final/data/Background_test/SY31/IMG_1166.JPG 0
-/home/karenng/Desktop/FYP_final/data/Background_test/SY31/IMG_1169.JPG 0
-/home/karenng/Desktop/FYP_final/data/Background_test/SY31/IMG_1172.JPG 0
-/home/karenng/Desktop/FYP_final/data/Background_test/SY31/IMG_1196.JPG 1 1 2 4 5
-/home/karenng/Desktop/FYP_final/data/Background_test/SY31/IMG_1199.JPG 1 1 2 4 5
-/home/karenng/Desktop/FYP_final/data/Background_test/SY31/IMG_1202.JPG 1 1 2 4 5 7
-/home/karenng/Desktop/FYP_final/data/Background_test/SY31/IMG_1205.JPG 1 1 2 4 5 7
-/home/karenng/Desktop/FYP_final/data/Background_test/SY31/IMG_1208.JPG 1 1 2 4 5 7 8
-/home/karenng/Desktop/FYP_final/data/Background_test/SY31/IMG_1211.JPG 1 1 2 4 5 7 8
+/home/karenng/Desktop/FYP_final/data/Background_test/SY31/IMG_1162.JPG 0
+/home/karenng/Desktop/FYP_final/data/Background_test/SY31/IMG_1165.JPG 0
+/home/karenng/Desktop/FYP_final/data/Background_test/SY31/IMG_1168.JPG 0
+/home/karenng/Desktop/FYP_final/data/Background_test/SY31/IMG_1171.JPG 0
+/home/karenng/Desktop/FYP_final/data/Background_test/SY31/IMG_1195.JPG 1 1 2 4 5
+/home/karenng/Desktop/FYP_final/data/Background_test/SY31/IMG_1198.JPG 1 1 2 4 5
+/home/karenng/Desktop/FYP_final/data/Background_test/SY31/IMG_1201.JPG 1 1 2 4 5 7
+/home/karenng/Desktop/FYP_final/data/Background_test/SY31/IMG_1204.JPG 1 1 2 4 5 7
+/home/karenng/Desktop/FYP_final/data/Background_test/SY31/IMG_1207.JPG 1 1 2 4 5 7 8
+/home/karenng/Desktop/FYP_final/data/Background_test/SY31/IMG_1210.JPG 1 1 2 4 5 7 8
 /home/karenng/Desktop/FYP_final/data/Background_test/T02/IMG_0013.JPG 0
 /home/karenng/Desktop/FYP_final/data/Background_test/T02/IMG_0016.JPG 0
 /home/karenng/Desktop/FYP_final/data/Background_test/T02/IMG_0022.JPG 0
