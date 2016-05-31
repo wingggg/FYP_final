@@ -30,6 +30,9 @@ for i=1:length(benchString)
 end
 
 %% For each file:
+validSum = 0;
+regionsSum = 0;
+validCount = 0;
 k = 1;
 for i=1:numFiles
     % constructing outStruct
@@ -127,28 +130,29 @@ for i=1:numFiles
                                 'regionsMatch', regionsMatch ...        % as a percentage
                                 );
                             
-        formatSpec = '%d %s  \n';
-        fprintf(outfile, formatSpec, [i testResults.filename]);
+        formatSpec = '%d %s \n';
+        fprintf(outfile, formatSpec, [i testResults.filename], [ testResults.validMatch num2str(testResults.regionsMatch) ]);
     else
         fprintf(outfile, formatSpec, [i 'ERROR']);
+    end
+    
+    %% Accuracy calculation
+    % Accuracy test for animal detected or not
+    validSum = validSum + testResults.validMatch;
+    
+    % Accuracy test for detection bounding box for those images accurately
+    % filtered only
+    
+    if testResults.validDetected && testResults.validBenchmark;
+        validCount = validCount + 1;
+        regionsSum = regionsSum + testResults.regionsMatch;
     end
 
 end
 
-
-% %% Accuracy
-% % Accuracy test for animal detected or not
-% validAccuracy = sum([testResults(:).validMatch])/length([testResults(:).validMatch]);
-% 
-% % Accuracy test for detection bounding box for those images accurately
-% % filtered only
-% regionsAccuracy = 0;
-% index = intersect(find([testResults(:).validDetected]), find([testResults(:).validBenchmark]));
-% for i=1:length(index)
-%     regionsAccuracy = regionsAccuracy + testResults(index(i)).regionsMatch;
-% end
-% regionsAccuracy = regionsAccuracy/length(index);
-% 
+validAccuracy = validSum/numFiles
+regionsAccuracy = regionsSum/validCount
 
 
+fprintf(outfile, '%s %s %s %s \n', ['validAccuracy:' num2str(validAccuracy) '; regionsAccuracy:' num2str(regionsAccuracy) ]);
 fclose(outfile);
