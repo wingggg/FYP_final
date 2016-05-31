@@ -360,31 +360,32 @@
 /home/karenng/Desktop/FYP_final/data/Background_test/T08/IMG_0736.JPG 0
 /home/karenng/Desktop/FYP_final/data/Background_test/T08/IMG_0739.JPG 0
 /home/karenng/Desktop/FYP_final/data/Background_test/T08/IMG_0742.JPG 0
-/home/karenng/Desktop/FYP_final/data/Background_test/T11/IMG_0329.JPG 1 7
-/home/karenng/Desktop/FYP_final/data/Background_test/T11/IMG_0332.JPG 1 4 5 7 8
-/home/karenng/Desktop/FYP_final/data/Background_test/T11/IMG_0335.JPG 1 6 7 8
-/home/karenng/Desktop/FYP_final/data/Background_test/T11/IMG_0338.JPG 1 6 7
-/home/karenng/Desktop/FYP_final/data/Background_test/T11/IMG_0341.JPG 1 6 7
-/home/karenng/Desktop/FYP_final/data/Background_test/T11/IMG_0344.JPG 1 7 8
-/home/karenng/Desktop/FYP_final/data/Background_test/T11/IMG_0347.JPG 1 8
-/home/karenng/Desktop/FYP_final/data/Background_test/T11/IMG_0350.JPG 1 1 2 3 4 5 6 7 8
-/home/karenng/Desktop/FYP_final/data/Background_test/T11/IMG_0395.JPG 0
-/home/karenng/Desktop/FYP_final/data/Background_test/T11/IMG_0398.JPG 0
-/home/karenng/Desktop/FYP_final/data/Background_test/T11/IMG_0401.JPG 0
-/home/karenng/Desktop/FYP_final/data/Background_test/T11/IMG_0404.JPG 0
-/home/karenng/Desktop/FYP_final/data/Background_test/T12/IMG_0053.JPG 1 4 5 7 8
-/home/karenng/Desktop/FYP_final/data/Background_test/T12/IMG_0056.JPG 1 4 6
-/home/karenng/Desktop/FYP_final/data/Background_test/T12/IMG_0059.JPG 1 6 7
-/home/karenng/Desktop/FYP_final/data/Background_test/T12/IMG_0062.JPG 0
-/home/karenng/Desktop/FYP_final/data/Background_test/T12/IMG_0065.JPG 0
-/home/karenng/Desktop/FYP_final/data/Background_test/T12/IMG_0068.JPG 0
-/home/karenng/Desktop/FYP_final/data/Background_test/T12/IMG_0071.JPG 0
-/home/karenng/Desktop/FYP_final/data/Background_test/T12/IMG_0074.JPG 0
-/home/karenng/Desktop/FYP_final/data/Background_test/T12/IMG_0077.JPG 1 7
-/home/karenng/Desktop/FYP_final/data/Background_test/T12/IMG_0080.JPG 1 7
-/home/karenng/Desktop/FYP_final/data/Background_test/T12/IMG_0083.JPG 1 6 7
-/home/karenng/Desktop/FYP_final/data/Background_test/T12/IMG_0086.JPG 1 7 8
-/home/karenng/Desktop/FYP_final/data/Background_test/T12/IMG_0089.JPG 0
+
+/home/karenng/Desktop/FYP_final/data/Background_test/T11/IMG_0328.JPG 1 7
+/home/karenng/Desktop/FYP_final/data/Background_test/T11/IMG_0331.JPG 1 4 5 7 8
+/home/karenng/Desktop/FYP_final/data/Background_test/T11/IMG_0334.JPG 1 6 7 8
+/home/karenng/Desktop/FYP_final/data/Background_test/T11/IMG_0337.JPG 1 6 7
+/home/karenng/Desktop/FYP_final/data/Background_test/T11/IMG_0340.JPG 1 6 7
+/home/karenng/Desktop/FYP_final/data/Background_test/T11/IMG_0343.JPG 1 7 8
+/home/karenng/Desktop/FYP_final/data/Background_test/T11/IMG_0346.JPG 1 8
+/home/karenng/Desktop/FYP_final/data/Background_test/T11/IMG_0349.JPG 1 1 2 3 4 5 6 7 8
+/home/karenng/Desktop/FYP_final/data/Background_test/T11/IMG_0394.JPG 0
+/home/karenng/Desktop/FYP_final/data/Background_test/T11/IMG_0397.JPG 0
+/home/karenng/Desktop/FYP_final/data/Background_test/T11/IMG_0400.JPG 0
+/home/karenng/Desktop/FYP_final/data/Background_test/T11/IMG_0403.JPG 0
+/home/karenng/Desktop/FYP_final/data/Background_test/T12/IMG_0052.JPG 1 4 5 7 8
+/home/karenng/Desktop/FYP_final/data/Background_test/T12/IMG_0055.JPG 1 4 6
+/home/karenng/Desktop/FYP_final/data/Background_test/T12/IMG_0058.JPG 1 6 7
+/home/karenng/Desktop/FYP_final/data/Background_test/T12/IMG_0061.JPG 0
+/home/karenng/Desktop/FYP_final/data/Background_test/T12/IMG_0064.JPG 0
+/home/karenng/Desktop/FYP_final/data/Background_test/T12/IMG_0067.JPG 0
+/home/karenng/Desktop/FYP_final/data/Background_test/T12/IMG_0070.JPG 0
+/home/karenng/Desktop/FYP_final/data/Background_test/T12/IMG_0073.JPG 0
+/home/karenng/Desktop/FYP_final/data/Background_test/T12/IMG_0076.JPG 1 7
+/home/karenng/Desktop/FYP_final/data/Background_test/T12/IMG_0079.JPG 1 7
+/home/karenng/Desktop/FYP_final/data/Background_test/T12/IMG_0082.JPG 1 6 7
+/home/karenng/Desktop/FYP_final/data/Background_test/T12/IMG_0085.JPG 1 7 8
+/home/karenng/Desktop/FYP_final/data/Background_test/T12/IMG_0088.JPG 0
 /home/karenng/Desktop/FYP_final/data/Background_test/T15/IMG_0229.JPG 0
 /home/karenng/Desktop/FYP_final/data/Background_test/T15/IMG_0232.JPG 0
 /home/karenng/Desktop/FYP_final/data/Background_test/T15/IMG_0235.JPG 1 3 6
@@ -396,15 +397,15 @@
 /home/karenng/Desktop/FYP_final/data/Background_test/T15/IMG_0298.JPG 1 4
 /home/karenng/Desktop/FYP_final/data/Background_test/T15/IMG_0301.JPG 1 4
 /home/karenng/Desktop/FYP_final/data/Background_test/T15/IMG_0304.JPG 1 4
-/home/karenng/Desktop/FYP_final/data/Background_test/W09/IMG_0746.JPG 0
-/home/karenng/Desktop/FYP_final/data/Background_test/W09/IMG_0749.JPG 0
-/home/karenng/Desktop/FYP_final/data/Background_test/W09/IMG_0752.JPG 0
-/home/karenng/Desktop/FYP_final/data/Background_test/W09/IMG_0755.JPG 0
-/home/karenng/Desktop/FYP_final/data/Background_test/W09/IMG_0758.JPG 1 3
-/home/karenng/Desktop/FYP_final/data/Background_test/W09/IMG_0761.JPG 1 0 3 6
-/home/karenng/Desktop/FYP_final/data/Background_test/W09/IMG_0764.JPG 1 0 3 6
-/home/karenng/Desktop/FYP_final/data/Background_test/W09/IMG_0767.JPG 1 0 3 6 7
-/home/karenng/Desktop/FYP_final/data/Background_test/W09/IMG_0770.JPG 1 0 3 6
+/home/karenng/Desktop/FYP_final/data/Background_test/W09/IMG_0745.JPG 0
+/home/karenng/Desktop/FYP_final/data/Background_test/W09/IMG_0748.JPG 0
+/home/karenng/Desktop/FYP_final/data/Background_test/W09/IMG_0751.JPG 0
+/home/karenng/Desktop/FYP_final/data/Background_test/W09/IMG_0754.JPG 0
+/home/karenng/Desktop/FYP_final/data/Background_test/W09/IMG_0757.JPG 1 3
+/home/karenng/Desktop/FYP_final/data/Background_test/W09/IMG_0760.JPG 1 0 3 6
+/home/karenng/Desktop/FYP_final/data/Background_test/W09/IMG_0763.JPG 1 0 3 6
+/home/karenng/Desktop/FYP_final/data/Background_test/W09/IMG_0766.JPG 1 0 3 6 7
+/home/karenng/Desktop/FYP_final/data/Background_test/W09/IMG_0769.JPG 1 0 3 6
 /home/karenng/Desktop/FYP_final/data/Background_test/W11/IMG_0010.JPG 0
 /home/karenng/Desktop/FYP_final/data/Background_test/W11/IMG_0013.JPG 0
 /home/karenng/Desktop/FYP_final/data/Background_test/W11/IMG_0016.JPG 0
