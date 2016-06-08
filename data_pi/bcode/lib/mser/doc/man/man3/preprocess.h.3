@@ -1,0 +1,73 @@
+.TH "preprocess.h" 3 "22 Oct 2006" "Doxygen" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+preprocess.h \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <math.h>\fP
+.br
+\fC#include <ary.h>\fP
+.br
+\fC#include 'extremaTypes.h'\fP
+.br
+\fC#include 'extremaParams.h'\fP
+.br
+
+.SS "Namespaces"
+
+.in +1c
+.ti -1c
+.RI "namespace \fBextrema\fP"
+.br
+.in -1c
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBextrema::CPreprocess\fP"
+.br
+.ti -1c
+.RI "class \fBextrema::CPreprocessRGBSeq\fP"
+.br
+.ti -1c
+.RI "class \fBextrema::CPreprocessRGBPlanes\fP"
+.br
+.in -1c
+.SS "Defines"
+
+.in +1c
+.ti -1c
+.RI "#define \fBM_PI\fP   3.14159265358979323846"
+.br
+.ti -1c
+.RI "#define \fBdef_preprocess_function_seq\fP(channel_conversion, intensity_processing)"
+.br
+.ti -1c
+.RI "#define \fBdef_preprocess_function_plan\fP(channel_conversion, intensity_processing)"
+.br
+.in -1c
+.SH "Define Documentation"
+.PP 
+.SS "#define def_preprocess_function_plan(channel_conversion, intensity_processing)"
+.PP
+\fBValue:\fP
+.PP
+.nf
+void preprocess_## channel_conversion ## _ ## intensity_processing    \
+(const ExtremaImage &image, int preprocess_type, int swap, utls::BAry *&img);
+.fi
+.SS "#define def_preprocess_function_seq(channel_conversion, intensity_processing)"
+.PP
+\fBValue:\fP
+.PP
+.nf
+void preprocess_## channel_conversion ## _ ## intensity_processing    \
+(const ExtremaImage &image, int preprocess_type, utls::BAry *&img);
+.fi
+.SS "#define M_PI   3.14159265358979323846"
+.PP
+.SH "Author"
+.PP 
+Generated automatically by Doxygen from the source code.

@@ -1,0 +1,149 @@
+.TH "extrema::Region" 3 "22 Oct 2006" "Doxygen" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+extrema::Region \- A structure with common statistics of \fBBoundaryRegion\fP and \fBRLERegion\fP.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <libExtrema.h>\fP
+.PP
+Inherited by \fBextrema::BoundaryRegion\fP, and \fBextrema::RLERegion\fP.
+.PP
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "int \fBlabel\fP"
+.br
+.RI "\fIUnique region's label. \fP"
+.ti -1c
+.RI "int \fBminI\fP"
+.br
+.RI "\fIMinimum intensity. \fP"
+.ti -1c
+.RI "int \fBmaxI\fP"
+.br
+.RI "\fIMaximum intensity. \fP"
+.ti -1c
+.RI "int \fBmargin\fP"
+.br
+.RI "\fIStability i.e. the length of stable intensities range. \fP"
+.ti -1c
+.RI "int \fBthreshold\fP"
+.br
+.RI "\fIThresholded intensity. \fP"
+.ti -1c
+.RI "int \fBextremumX\fP"
+.br
+.RI "\fIPosition of initial point of the region, a zero-based X coordinate. \fP"
+.ti -1c
+.RI "int \fBextremumY\fP"
+.br
+.RI "\fIPosition of initial point of the region, a zero-based Y coordinate . \fP"
+.ti -1c
+.RI "int \fBarea\fP"
+.br
+.RI "\fIA region area at the thresholded intensity level. \fP"
+.ti -1c
+.RI "int \fBborder\fP"
+.br
+.RI "\fIA region border length at the thresholded intensity level. \fP"
+.ti -1c
+.RI "double \fBcx\fP"
+.br
+.RI "\fICentroid of the region at the thresholded level. \fP"
+.ti -1c
+.RI "double \fBcy\fP"
+.br
+.RI "\fICentroid of the region at the thresholded level. \fP"
+.ti -1c
+.RI "double \fBsxx\fP"
+.br
+.RI "\fISecond moments of the region at the thresholded level. \fP"
+.ti -1c
+.RI "double \fBsxy\fP"
+.br
+.RI "\fISecond moments of the region at the thresholded level. \fP"
+.ti -1c
+.RI "double \fBsyy\fP"
+.br
+.RI "\fISecond moments of the region at the thresholded level. \fP"
+.ti -1c
+.RI "int \fBrid\fP"
+.br
+.RI "\fIUnique region id, i.e. index of the region. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+A structure with common statistics of \fBBoundaryRegion\fP and \fBRLERegion\fP. 
+.PP
+.SH "Member Data Documentation"
+.PP 
+.SS "int \fBextrema::Region::area\fP"
+.PP
+A region area at the thresholded intensity level. 
+.PP
+.SS "int \fBextrema::Region::border\fP"
+.PP
+A region border length at the thresholded intensity level. 
+.PP
+.SS "double \fBextrema::Region::cx\fP"
+.PP
+Centroid of the region at the thresholded level. 
+.PP
+.SS "double \fBextrema::Region::cy\fP"
+.PP
+Centroid of the region at the thresholded level. 
+.PP
+.SS "int \fBextrema::Region::extremumX\fP"
+.PP
+Position of initial point of the region, a zero-based X coordinate. 
+.PP
+.SS "int \fBextrema::Region::extremumY\fP"
+.PP
+Position of initial point of the region, a zero-based Y coordinate . 
+.PP
+.SS "int \fBextrema::Region::label\fP"
+.PP
+Unique region's label. 
+.PP
+.SS "int \fBextrema::Region::margin\fP"
+.PP
+Stability i.e. the length of stable intensities range. 
+.PP
+.SS "int \fBextrema::Region::maxI\fP"
+.PP
+Maximum intensity. 
+.PP
+.SS "int \fBextrema::Region::minI\fP"
+.PP
+Minimum intensity. 
+.PP
+.SS "int \fBextrema::Region::rid\fP"
+.PP
+Unique region id, i.e. index of the region. 
+.PP
+.SS "double \fBextrema::Region::sxx\fP"
+.PP
+Second moments of the region at the thresholded level. 
+.PP
+.SS "double \fBextrema::Region::sxy\fP"
+.PP
+Second moments of the region at the thresholded level. 
+.PP
+.SS "double \fBextrema::Region::syy\fP"
+.PP
+Second moments of the region at the thresholded level. 
+.PP
+.SS "int \fBextrema::Region::threshold\fP"
+.PP
+Thresholded intensity. 
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen from the source code.
