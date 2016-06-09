@@ -728,7 +728,7 @@ clock_t printRuntime(clock_t start_t, clock_t end_t, string name){
 
 void call_from_thread(Params *par, vector<char *> filenames, int k, vector<BB> &bbs, int &sel, ofstream &textoutput){
 	sel = processSet(par, filenames, k, bbs);
-	cout << k << " processed" << endl;
+	cout << "Thread " << k/3 << ": set " << k << " processed" << endl;
 	
 	if(bbs.size()>0){
 		textoutput <<  filenames[k] << " " << bbs[0].valid << " " << bbs[sel].sx << " " << bbs[sel].sy << " " <<  bbs[sel].ex-bbs[sel].sx << " " << bbs[sel].ey-bbs[sel].sy  << " " << bbs[sel].confidence   << " " << bbs[sel].coverage  <<  "\n";
