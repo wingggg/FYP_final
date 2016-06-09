@@ -5,11 +5,9 @@
 #include <time.h>
 #include <iostream>
 #include <thread>
-#include <mutex>
+#include <algorithm>
 
 //using namespace tbb;
-int global_counter = 0;
-std::mutex counter_mutex; 
 
 clock_t t;
 
@@ -726,20 +724,29 @@ clock_t printRuntime(clock_t start_t, clock_t end_t, string name){
 	return end_t;
 }
 
-void call_from_thread(Params *par, vector<char *> filenames, int k, vector<BB> &bbs, int &sel, ofstream &textoutput){
-	sel = processSet(par, filenames, k, bbs);
-	cout << "Thread " << k/3 << ": set " << k << " processed" << endl;
-	
+void forEachSet(Params *par, vector<char *> filenames, int i, vector<BB> &bbs, ofstream &textoutput){
+	int sel = processSet(par, filenames, i, bbs);
+
 	if(bbs.size()>0){
-		textoutput <<  filenames[k] << " " << bbs[0].valid << " " << bbs[sel].sx << " " << bbs[sel].sy << " " <<  bbs[sel].ex-bbs[sel].sx << " " << bbs[sel].ey-bbs[sel].sy  << " " << bbs[sel].confidence   << " " << bbs[sel].coverage  <<  "\n";
+		textoutput <<  filenames[i] << " " << bbs[0].valid << " " << bbs[sel].sx << " " << bbs[sel].sy << " " <<  bbs[sel].ex-bbs[sel].sx << " " << bbs[sel].ey-bbs[sel].sy  << " " << bbs[sel].confidence   << " " << bbs[sel].coverage  <<  "\n";
 		// textoutput <<  filenames[i] << " " << bbs.size() << " " << bbs[sel].ex << " " << bbs[sel].ey << " " << bbs[sel].w << " " << bbs[sel].h << " " << bbs[sel].x << " " << bbs[sel].y << "\n";
 		
 	}else{
-		textoutput <<  filenames[k] << " " << 0 << " " << 0 << " " << 0 << " " <<  0 << " " << 0  << " " << 0   << " " << 0  << "\n";
+		textoutput <<  filenames[i] << " " << 0 << " " << 0 << " " << 0 << " " <<  0 << " " << 0  << " " << 0   << " " << 0  << "\n";
 	}
-	cout << k << " " << filenames[k] << " of " << filenames.size() <<" bbs.size " <<  bbs.size()<< endl;
+	cout << i << " " << filenames[i] << " of " << filenames.size() <<" bbs.size " <<  bbs.size()<< endl;
 	
 	bbs.clear();
+}
+
+void call_from_thread(Params *par, vector<char *> filenames, uint start, uint chunkSize, vector<BB> &bbs, ofstream &textoutput){
+	int end = min(start+chunkSize, filenames.size());
+
+	for(int i=start; i<end; i+=3){
+		forEachSet(par, filenames, i, bbs, textoutput);
+		
+		cout << "Thread " << floor(start/chunkSize) << ": set " << i << " processed" << endl;
+	}
 }
 
 
@@ -783,8 +790,8 @@ int main(int argc, char **argv){
     loadFileNames(par->getString("input_images.char"),filenames);
     if(filenames.size()<1){ return 1; }
     
-    int k, sel;
-    const int num_threads = filenames.size()/3;
+    uint k, numSets, chunkSize, chunkTemp, remainder;
+    const int num_threads = 8;
 	std::thread th[num_threads];
 	clock_t temp_t = t;
     
@@ -795,21 +802,43 @@ int main(int argc, char **argv){
     ofstream textoutput(par->getString("output_file.char"));
 
     if(!strcmp(par->getString("input_type.char"),"fulls")){
+		numSets = filenames.size()/3;
 		
-		//Launch a group of threads
-		for(int i=0; i<num_threads; ++i){
-			k = i*3;
-			th[i] = std::thread(call_from_thread, par, filenames, k, std::ref(bbs), std::ref(sel), std::ref(textoutput));
-			//temp_t = printRuntime(temp_t, clock(), "dataset");
+		if(numSets % num_threads == 0){
+			chunkSize = 3*(numSets/num_threads);
+			//Launch a group of threads
+			for(int i=0; i<num_threads-1; ++i){
+				uint k = i*chunkSize;
+				th[i] = std::thread(call_from_thread, par, filenames, k, chunkSize, std::ref(bbs), std::ref(textoutput));
+			}
+			//Last thread saved for main (simply call function) 
+			call_from_thread(par, filenames, (num_threads-1)*chunkSize, chunkSize, bbs, textoutput);
 		}
-		
+		else{
+			chunkTemp = numSets / (num_threads-1);
+			remainder = numSets % (num_threads-1);
+			//Launch a group of threads
+			for(int i=0; i<num_threads-1; ++i){
+				if(i < remainder){ chunkSize = 3*(chunkTemp+1); }
+				else{ chunkSize = 3*chunkTemp; }
+
+				k = i*chunkSize;
+				th[i] = std::thread(call_from_thread, par, filenames, k, chunkSize, std::ref(bbs), std::ref(textoutput));
+			}
+			//Last thread saved for main (simply call function) 
+			call_from_thread(par, filenames, 3*((num_threads-1)*chunkTemp+remainder), 3*chunkTemp, bbs, textoutput);
+		}
+
 		cout << "test join" << endl;
 
 		//Join the threads with the main thread
-		for(int i=0; i<num_threads; ++i){
+		for(int i=0; i<num_threads-1; ++i){
 			th[i].join();
 		}
 		cout << "end join" << endl;
+		
+		
+		//temp_t = printRuntime(temp_t, clock(), "dataset");
 		
     }else{
         // (input_type.char == "diffs") --> computeDifferences(images)
