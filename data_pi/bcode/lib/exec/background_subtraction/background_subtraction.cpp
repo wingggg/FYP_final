@@ -1,7 +1,15 @@
 #include "../../descriptor/feature.h"
 #include "../../util/util.h"
-#include <string>
+//#include "tbb/tbb.h"
+//#include "tbb/parallel_for.h"
 #include <time.h>
+#include <iostream>
+#include <thread>
+#include <mutex>
+
+//using namespace tbb;
+int global_counter = 0;
+std::mutex counter_mutex; 
 
 clock_t t;
 
@@ -710,12 +718,30 @@ int processSet(Params *par, vector<char *> filenames, int findex, vector<BB> &bb
     return sel;
 }
 
+
 clock_t printRuntime(clock_t start_t, clock_t end_t, string name){
 	clock_t t = end_t - start_t;
 	cout << name << " - runtime: " << t << " clock cycles";
 	cout << " (" << ((float)t)/CLOCKS_PER_SEC << " seconds)" << endl;
 	return end_t;
 }
+
+void call_from_thread(Params *par, vector<char *> filenames, int k, vector<BB> &bbs, int &sel, ofstream &textoutput){
+	sel = processSet(par, filenames, k, bbs);
+	cout << k << " processed" << endl;
+	
+	if(bbs.size()>0){
+		textoutput <<  filenames[k] << " " << bbs[0].valid << " " << bbs[sel].sx << " " << bbs[sel].sy << " " <<  bbs[sel].ex-bbs[sel].sx << " " << bbs[sel].ey-bbs[sel].sy  << " " << bbs[sel].confidence   << " " << bbs[sel].coverage  <<  "\n";
+		// textoutput <<  filenames[i] << " " << bbs.size() << " " << bbs[sel].ex << " " << bbs[sel].ey << " " << bbs[sel].w << " " << bbs[sel].h << " " << bbs[sel].x << " " << bbs[sel].y << "\n";
+		
+	}else{
+		textoutput <<  filenames[k] << " " << 0 << " " << 0 << " " << 0 << " " <<  0 << " " << 0  << " " << 0   << " " << 0  << "\n";
+	}
+	cout << k << " " << filenames[k] << " of " << filenames.size() <<" bbs.size " <<  bbs.size()<< endl;
+	
+	bbs.clear();
+}
+
 
 int main(int argc, char **argv){
 	t = clock();
@@ -753,37 +779,38 @@ int main(int argc, char **argv){
     }
 
     vector<char *> filenames;
-    vector<BB> bbs;
+    vector<BB> bbs;	//bbs chnaged from 1D to 2D vector
     loadFileNames(par->getString("input_images.char"),filenames);
     if(filenames.size()<1){ return 1; }
+    
+    int k, sel;
+    const int num_threads = filenames.size()/3;
+	std::thread th[num_threads];
+	clock_t temp_t = t;
+    
     
     printRuntime(t, clock(), "Load files");
 
     float conf_factor = par->getValue("conf_factor.float");
     ofstream textoutput(par->getString("output_file.char"));
 
-    // cout << "TEST01" << endl;
-    // cout << par->getString("input_type.char") << endl;
-    // cout << filenames[10] << endl;
-
     if(!strcmp(par->getString("input_type.char"),"fulls")){
-		//clock_t temp_t = t;
-        for(uint i=0; i<filenames.size(); i+=3){
-            int sel = processSet(par, filenames, i, bbs);
-			
+		
+		//Launch a group of threads
+		for(int i=0; i<num_threads; ++i){
+			k = i*3;
+			th[i] = std::thread(call_from_thread, par, filenames, k, std::ref(bbs), std::ref(sel), std::ref(textoutput));
 			//temp_t = printRuntime(temp_t, clock(), "dataset");
-			
-            if(bbs.size()>0){
-                textoutput <<  filenames[i] << " " << bbs[0].valid << " " << bbs[sel].sx << " " << bbs[sel].sy << " " <<  bbs[sel].ex-bbs[sel].sx << " " << bbs[sel].ey-bbs[sel].sy  << " " << bbs[sel].confidence   << " " << bbs[sel].coverage  <<  "\n";
-                // textoutput <<  filenames[i] << " " << bbs.size() << " " << bbs[sel].ex << " " << bbs[sel].ey << " " << bbs[sel].w << " " << bbs[sel].h << " " << bbs[sel].x << " " << bbs[sel].y << "\n";
-                
-            }else{
-                textoutput <<  filenames[i] << " " << 0 << " " << 0 << " " << 0 << " " <<  0 << " " << 0  << " " << 0   << " " << 0  << "\n";
-            }
-            cout << i << " " << filenames[i] << " of " << filenames.size() <<" bbs.size " <<  bbs.size()<< endl;
+		}
+		
+		cout << "test join" << endl;
 
-            bbs.clear();
-        }
+		//Join the threads with the main thread
+		for(int i=0; i<num_threads; ++i){
+			th[i].join();
+		}
+		cout << "end join" << endl;
+		
     }else{
         // (input_type.char == "diffs") --> computeDifferences(images)
         int sel = processSet(par, filenames, -1, bbs);
@@ -806,3 +833,11 @@ int main(int argc, char **argv){
     return 0;
 }
 
+//tbb::parallel_for<size_t>(0, 9, testPrint);
+
+/*
+//tbb::parallel_for(0u, filenames.size(), 3, [=](size_t i){
+	//uint i = k * 3;
+	int sel = processSet(par, filenames, i, bbs);
+}); 
+*/

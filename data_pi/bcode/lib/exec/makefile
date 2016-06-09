@@ -1,5 +1,5 @@
 
-CC = g++
+CC = g++ -std=c++11 -pthread
 
 ifeq ($(HOSTTYPE),intel-mac)
         RHOME = /Users/kma/Dropbox/code
@@ -9,7 +9,7 @@ ifeq ($(HOSTTYPE),intel-mac)
         MACDEF = -DMAC_OS
 		BIN_EXT = ln 
 else
-        RHOME = /home/pi/Documents/data/bcode
+        RHOME = /home/pi/Documents/FYP_final/data_pi/bcode
         #/home/cvssp/stf/ees1km/Dropbox/code
         #RHOME = /home/kma/Dropbox/code#/user/cvsspstf/ees1km/Dropbox/code
         BIN_EXT = ln
@@ -44,10 +44,10 @@ $(OBJDIR)/%.o: %.cc
 	$(CC) $(CFLAGS) $< -o $@
 
 $(OBJDIR)/%.o: %.cpp $(DEPEND)
-	$(CC) $(CFLAGS) $< -o $@  $(INCLUDES)
+	$(CC) $(CFLAGS) $< -o $@  $(INCLUDES) -pthread -std=c++11
 
 $(TARGET):  $(O_FILES)
-	 $(CC)  -o $(HOME_BIN)/$@ $(O_FILES) $(LDFLAGS) -static -lpthread $(LIBRARY) -lpthread
+	 $(CC)  -o $(HOME_BIN)/$@ $(O_FILES) $(LDFLAGS) -lpthread -pthread -std=c++11 $(LIBRARY) -lpthread -pthread -std=c++11
 #	 $(CC)  -o $(HOME_BIN)/$@ $(O_FILES) $(MACFLAGS) -lpthread $(LIBRARY) -fopenmp -lpthread
 
 # scp $(HOME_BIN)/$@ ees1km@131.227.95.122:/vol/vssp/recog/bin/.
