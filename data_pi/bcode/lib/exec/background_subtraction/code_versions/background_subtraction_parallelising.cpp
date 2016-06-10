@@ -712,10 +712,11 @@ int processSet(Params *par, vector<char *> filenames, int findex, vector<BB> &bb
         sel=selectBBs(bbs, par);
         // if(bbs.size()>0){ sel=0; }
     }
-     //
+    cout << " OK 5 " << findex <<  " "<< filenames[findex]<< endl;
     if(findex==-1){ findex=1; }
     // coutBB used in drawBB prints to terminal
     if((int)par->getValue("draw_images.int")){ drawBB(filenames[findex],output,bbs,sel); }
+    cout << " OK 6 " << findex <<  " "<< filenames[findex]<< endl;
 
     delete output;
     return sel;
