@@ -499,23 +499,59 @@ void computeDifferences(vector<DARY *> &images){
 
     // images[0]->writePNG("d1.png");
     //  images[1]->writePNG("d2.png");
-     
 }
- 
+
+
+/*
+ * crop() function copied from ImageContent.cpp
+void cropRefined(DARY *img, int x, int y, char *mode){
+	
+	int dy=y_size>>1;	//dy = y / 2
+	int dx=x_size>>1;	
+	int iy=y-dy;		//iy = y / 2
+	int ix=x-dx;
+	uint jy=y+dy;		//unsigned jy = y * (3/2)
+	uint jx=x+dx;
+	int sy=(iy<0)?(-iy):0;
+	int sx=(ix<0)?(-ix):0;
+	int ey=(jy<img->y())?(y_size):(img->y()-iy);
+	int ex=(jx<img->x())?(x_size):(img->x()-ix);
+	
+	sy=0;
+	sx=0;
+	ey=y_size;
+	ex=x_size;
+	iy=y;		//input
+	ix=x;		//input
+
+   
+    for (int i = sy; i < ey; i++){
+      for (int j = sx; j < ex; j++){
+        belr[i][j]= img->belr[iy+i][ix+j];
+        belg[i][j]= img->belg[iy+i][ix+j];
+        belb[i][j]= img->belb[iy+i][ix+j];
+      }   
+    }
+}
+*/
+
+
 void loadImages(vector<char *> filenames, int start, vector<DARY *> &images, Params *par){
     // cout << filenames[start]<< endl;
     DARY *sim,*im;
     int width = par->getValue("image_width.int");  
     int height = par->getValue("image_height.int");
     int mtop = par->getValue("header_size.int");
+    
+    clock_t u = clock();
 
     if(start==-1){ // returns two images
         DARY *imin = new DARY(filenames[2]);
         int mhight = imin->y() - par->getValue("footnote_size.int") - mtop;
-        
-        im = new DARY(mhight, imin->x(), UCHAR3);    
-        im->crop(imin, 0, mtop);
 
+        im = new DARY(mhight, imin->x(), UCHAR3);    
+        im->crop(imin, 0, mtop);                                                     
+        
         // float scalex = width/(float)im->x(); 
         // height = (int)(im->y()/scalex);
         // sim = new DARY(height,width,UCHAR3);
@@ -540,8 +576,15 @@ void loadImages(vector<char *> filenames, int start, vector<DARY *> &images, Par
         DARY *imin =new DARY(filenames[start]);
         int mhight = imin->y() - par->getValue("footnote_size.int") - mtop;
         //cout << mhight << endl;
+        //int u0 = printRuntime(u, clock(), "loadImages TP0");
+        
+        //cout << "x: " << imin->x() << endl;
+        //cout << "y: " << imin->y() << endl;
+        
         im = new DARY(mhight,imin->x(),UCHAR3);
         im->crop(imin,0,mtop);
+        
+        //int u1 = printRuntime(u0, clock(), "loadImages TP1");
 
         float scalex=(float)im->x()/width;    
         height = (int)(im->y()/scalex);
@@ -549,24 +592,35 @@ void loadImages(vector<char *> filenames, int start, vector<DARY *> &images, Par
         sim->decrease(im);
         //sim->writePNG("test1.png");
         delete imin;
+        
+        //int u2 = printRuntime(u1, clock(), "loadImages TP2");
 
         // images.push_back(sim);        
         images.push_back(new DARY(sim));        //images[0]
         images.push_back(new DARY(sim));        //images[1]
         images.push_back(sim);  //              //images[2]
+        
+        //int u3 = printRuntime(u2, clock(), "loadImages TP3");
 
         imin=new DARY(filenames[start+1]);
+        //int u4a = printRuntime(u3, clock(), "loadImages TP4a");
         im->crop(imin,0,mtop);
+        //int u4b = printRuntime(u4a, clock(), "loadImages TP4b");
         sim=new DARY(height,width,UCHAR3);
+        //int u4c = printRuntime(u4b, clock(), "loadImages TP4c");
         sim->decrease(im);
         //sim->writePNG("test2.png");
         //delete imin;			// commented out
         images.push_back(sim);                  //images[3]
         
+        //int u4 = printRuntime(u3, clock(), "loadImages TP4");
+        
         imin=new DARY(filenames[start+2]);
         im->crop(imin,0,mtop);
         sim=new DARY(height,width,UCHAR3);
         sim->decrease(im);
+        
+        //int u5 = printRuntime(u4, clock(), "loadImages TP5");
 
         //sim->writePNG("test3.png");getchar();
         delete imin;
@@ -683,23 +737,24 @@ int processSet(Params *par, vector<char *> filenames, int findex, vector<BB> &bb
 
     vector<DARY *> images;
     // cout << " OK 0 " << findex <<  " "<< filenames[findex]<< endl;
-    int t0 = printRuntime(start_t, clock(), "testpoint0");
+    //int t0 = printRuntime(start_t, clock(), "testpoint0");
     
     loadImages(filenames, findex, images, par);
     // cout << " OK 1 " << endl;
-    int t1 = printRuntime(t0, clock(), "testpoint1");
+    //int t1 = printRuntime(t0, clock(), "testpoint1");
     
     if(findex>0){ computeDifferences(images); }
     // cout << " OK 2 " << endl;
-    int t2 = printRuntime(t1, clock(), "testpoint2");
+    //int t2 = printRuntime(t1, clock(), "testpoint2");
 
     normalizeDifference(images);
-    int t3 = printRuntime(t2, clock(), "testpoint3");
+    //int t3 = printRuntime(t2, clock(), "testpoint3");
 
     DARY *output = new DARY(images[0]->y(),images[0]->x(),UCHAR1FLOAT1);
     output->set(0.0);
     // cout << " OK 3 " << endl;
     detectDifferences(images, output, par->getValue("diff_thres.int"), par->getValue("median_size.int"));
+    //int t4 = printRuntime(t3, clock(), "testpoint4");
 
     // Detect using HOG (histogram of oriented gradients)
     if((int)par->getValue("match_images.int")){ matchImages(images,output); }
@@ -709,6 +764,8 @@ int processSet(Params *par, vector<char *> filenames, int findex, vector<BB> &bb
     // Bounding box method
     int labels;
     labelSegments(output, labels);
+    //int t5 = printRuntime(t4, clock(), "testpoint5");
+    
     int sel=-1;
     if(labels>1){
         findBBs(output,bbs,labels);
@@ -716,17 +773,21 @@ int processSet(Params *par, vector<char *> filenames, int findex, vector<BB> &bb
         // if(bbs.size()>0){ sel=0; }
     }
     // cout << " OK 4 " << endl;
-    int t4 = printRuntime(t3, clock(), "testpoint4");
+    //int t6 = printRuntime(t5, clock(), "testpoint6");
+    
     if(findex==-1){ findex=1; }
     // coutBB used in drawBB prints to terminal
     if((int)par->getValue("draw_images.int")){ drawBB(filenames[findex],output,bbs,sel); }
+    
+    //int t7 = printRuntime(t6, clock(), "testpoint7");
+    //int t8 = printRuntime(start_t, clock(), "out of total");
 
     delete output;
     return sel;
 }
 
 
-int main(int argc, char **argv){
+int main(int argc, char **argv){ 
 	t = clock();
 	cout << "calculating..." << endl;
 
