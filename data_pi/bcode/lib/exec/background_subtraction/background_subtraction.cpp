@@ -1,17 +1,16 @@
 #include "../../descriptor/feature.h"
 #include "../../util/util.h"
-//#include "tbb/tbb.h"
-//#include "tbb/parallel_for.h"
+#include <string>
 #include <time.h>
-#include <iostream>
-#include <thread>
-#include <algorithm>
-
-//using namespace tbb;
 
 clock_t t;
 
-int counter = 0;
+clock_t printRuntime(clock_t start_t, clock_t end_t, string name){
+	clock_t t = end_t - start_t;
+	cout << name << " - runtime: " << t << " clock cycles";
+	cout << " (" << ((float)t)/CLOCKS_PER_SEC << " seconds)" << endl;
+	return end_t;
+}
 
 struct BB
 {
@@ -500,23 +499,59 @@ void computeDifferences(vector<DARY *> &images){
 
     // images[0]->writePNG("d1.png");
     //  images[1]->writePNG("d2.png");
-     
 }
- 
+
+
+/*
+ * crop() function copied from ImageContent.cpp
+void cropRefined(DARY *img, int x, int y, char *mode){
+	
+	int dy=y_size>>1;	//dy = y / 2
+	int dx=x_size>>1;	
+	int iy=y-dy;		//iy = y / 2
+	int ix=x-dx;
+	uint jy=y+dy;		//unsigned jy = y * (3/2)
+	uint jx=x+dx;
+	int sy=(iy<0)?(-iy):0;
+	int sx=(ix<0)?(-ix):0;
+	int ey=(jy<img->y())?(y_size):(img->y()-iy);
+	int ex=(jx<img->x())?(x_size):(img->x()-ix);
+	
+	sy=0;
+	sx=0;
+	ey=y_size;
+	ex=x_size;
+	iy=y;		//input
+	ix=x;		//input
+
+   
+    for (int i = sy; i < ey; i++){
+      for (int j = sx; j < ex; j++){
+        belr[i][j]= img->belr[iy+i][ix+j];
+        belg[i][j]= img->belg[iy+i][ix+j];
+        belb[i][j]= img->belb[iy+i][ix+j];
+      }   
+    }
+}
+*/
+
+
 void loadImages(vector<char *> filenames, int start, vector<DARY *> &images, Params *par){
     // cout << filenames[start]<< endl;
     DARY *sim,*im;
     int width = par->getValue("image_width.int");  
     int height = par->getValue("image_height.int");
     int mtop = par->getValue("header_size.int");
+    
+    clock_t u = clock();
 
     if(start==-1){ // returns two images
         DARY *imin = new DARY(filenames[2]);
         int mhight = imin->y() - par->getValue("footnote_size.int") - mtop;
-        
-        im = new DARY(mhight, imin->x(), UCHAR3);    
-        im->crop(imin, 0, mtop);
 
+        im = new DARY(mhight, imin->x(), UCHAR3);    
+        im->crop(imin, 0, mtop);                                                     
+        
         // float scalex = width/(float)im->x(); 
         // height = (int)(im->y()/scalex);
         // sim = new DARY(height,width,UCHAR3);
@@ -541,8 +576,15 @@ void loadImages(vector<char *> filenames, int start, vector<DARY *> &images, Par
         DARY *imin =new DARY(filenames[start]);
         int mhight = imin->y() - par->getValue("footnote_size.int") - mtop;
         //cout << mhight << endl;
+        int u0 = printRuntime(u, clock(), "loadImages TP0");
+        
+        cout << "x: " << imin->x() << endl;
+        cout << "y: " << imin->y() << endl;
+        
         im = new DARY(mhight,imin->x(),UCHAR3);
         im->crop(imin,0,mtop);
+        
+        int u1 = printRuntime(u0, clock(), "loadImages TP1");
 
         float scalex=(float)im->x()/width;    
         height = (int)(im->y()/scalex);
@@ -550,24 +592,35 @@ void loadImages(vector<char *> filenames, int start, vector<DARY *> &images, Par
         sim->decrease(im);
         //sim->writePNG("test1.png");
         delete imin;
+        
+        int u2 = printRuntime(u1, clock(), "loadImages TP2");
 
         // images.push_back(sim);        
         images.push_back(new DARY(sim));        //images[0]
         images.push_back(new DARY(sim));        //images[1]
         images.push_back(sim);  //              //images[2]
+        
+        int u3 = printRuntime(u2, clock(), "loadImages TP3");
 
         imin=new DARY(filenames[start+1]);
+        //int u4a = printRuntime(u3, clock(), "loadImages TP4a");
         im->crop(imin,0,mtop);
+        //int u4b = printRuntime(u4a, clock(), "loadImages TP4b");
         sim=new DARY(height,width,UCHAR3);
+        //int u4c = printRuntime(u4b, clock(), "loadImages TP4c");
         sim->decrease(im);
         //sim->writePNG("test2.png");
         //delete imin;			// commented out
         images.push_back(sim);                  //images[3]
         
+        int u4 = printRuntime(u3, clock(), "loadImages TP4");
+        
         imin=new DARY(filenames[start+2]);
         im->crop(imin,0,mtop);
         sim=new DARY(height,width,UCHAR3);
         sim->decrease(im);
+        
+        int u5 = printRuntime(u4, clock(), "loadImages TP5");
 
         //sim->writePNG("test3.png");getchar();
         delete imin;
@@ -679,22 +732,27 @@ int selectBBs(vector<BB> &bbs, Params *par){
 }
 
 
-int processSet(Params *par, vector<char *> filenames, int findex, vector<BB> &bbs){
+int processSet(Params *par, vector<char *> filenames, int findex, vector<BB> &bbs, clock_t start_t){
     // cout << "TEST\n";
-    counter++;
-    cout << "counter: " << counter << endl;
 
     vector<DARY *> images;
-     cout << " OK 0 " << findex <<  " "<< filenames[findex]<< endl;
+    // cout << " OK 0 " << findex <<  " "<< filenames[findex]<< endl;
+    //int t0 = printRuntime(start_t, clock(), "testpoint0");
+    
     loadImages(filenames, findex, images, par);
-     cout << " OK 1 " << findex <<  " "<< filenames[findex]<< endl;
+    // cout << " OK 1 " << endl;
+    //int t1 = printRuntime(t0, clock(), "testpoint1");
+    
     if(findex>0){ computeDifferences(images); }
-     cout << " OK 2 " << findex <<  " "<< filenames[findex]<< endl;
+    // cout << " OK 2 " << endl;
+    //int t2 = printRuntime(t1, clock(), "testpoint2");
+
     normalizeDifference(images);
+    //int t3 = printRuntime(t2, clock(), "testpoint3");
 
     DARY *output = new DARY(images[0]->y(),images[0]->x(),UCHAR1FLOAT1);
     output->set(0.0);
-     cout << " OK 3 " << findex <<  " "<< filenames[findex]<< endl;
+    // cout << " OK 3 " << endl;
     detectDifferences(images, output, par->getValue("diff_thres.int"), par->getValue("median_size.int"));
 
     // Detect using HOG (histogram of oriented gradients)
@@ -705,53 +763,20 @@ int processSet(Params *par, vector<char *> filenames, int findex, vector<BB> &bb
     // Bounding box method
     int labels;
     labelSegments(output, labels);
-    cout << " OK 4 " << findex <<  " "<< filenames[findex]<< endl;
     int sel=-1;
     if(labels>1){
         findBBs(output,bbs,labels);
         sel=selectBBs(bbs, par);
         // if(bbs.size()>0){ sel=0; }
     }
-     //
+    // cout << " OK 4 " << endl;
+    //int t4 = printRuntime(t3, clock(), "testpoint4");
     if(findex==-1){ findex=1; }
     // coutBB used in drawBB prints to terminal
     if((int)par->getValue("draw_images.int")){ drawBB(filenames[findex],output,bbs,sel); }
 
     delete output;
     return sel;
-}
-
-
-clock_t printRuntime(clock_t start_t, clock_t end_t, string name){
-	clock_t t = end_t - start_t;
-	cout << name << " - runtime: " << t << " clock cycles";
-	cout << " (" << ((float)t)/CLOCKS_PER_SEC << " seconds)" << endl;
-	return end_t;
-}
-
-void forEachSet(Params *par, vector<char *> filenames, int i, vector<BB> &bbs, ofstream &textoutput){
-	int sel = processSet(par, filenames, i, bbs);
-
-	if(bbs.size()>0){
-		textoutput <<  filenames[i] << " " << bbs[0].valid << " " << bbs[sel].sx << " " << bbs[sel].sy << " " <<  bbs[sel].ex-bbs[sel].sx << " " << bbs[sel].ey-bbs[sel].sy  << " " << bbs[sel].confidence   << " " << bbs[sel].coverage  <<  "\n";
-		// textoutput <<  filenames[i] << " " << bbs.size() << " " << bbs[sel].ex << " " << bbs[sel].ey << " " << bbs[sel].w << " " << bbs[sel].h << " " << bbs[sel].x << " " << bbs[sel].y << "\n";
-		
-	}else{
-		textoutput <<  filenames[i] << " " << 0 << " " << 0 << " " << 0 << " " <<  0 << " " << 0  << " " << 0   << " " << 0  << "\n";
-	}
-	cout << i << " " << filenames[i] << " of " << filenames.size() <<" bbs.size " <<  bbs.size()<< endl;
-	
-	bbs.clear();
-}
-
-void call_from_thread(Params *par, vector<char *> filenames, uint start, uint chunkSize, vector<BB> &bbs, ofstream &textoutput){
-	int end = min(start+chunkSize, filenames.size());
-
-	for(int i=start; i<end; i+=3){
-		forEachSet(par, filenames, i, bbs, textoutput);
-		
-		cout << "Thread " << floor(start/chunkSize) << ": set " << i << " processed" << endl;
-	}
 }
 
 
@@ -791,63 +816,40 @@ int main(int argc, char **argv){
     }
 
     vector<char *> filenames;
-    vector<BB> bbs;	//bbs chnaged from 1D to 2D vector
+    vector<BB> bbs;
     loadFileNames(par->getString("input_images.char"),filenames);
     if(filenames.size()<1){ return 1; }
     
-    uint k, numSets, chunkSize, chunkTemp, remainder;
-    const int num_threads = 8;
-	std::thread th[num_threads];
-	clock_t temp_t = t;
-    
-    
-    printRuntime(t, clock(), "Load files");
+    printRuntime(t, clock(), "Load file names");
 
     float conf_factor = par->getValue("conf_factor.float");
     ofstream textoutput(par->getString("output_file.char"));
 
+    // cout << "TEST01" << endl;
+    // cout << par->getString("input_type.char") << endl;
+    // cout << filenames[10] << endl;
+
     if(!strcmp(par->getString("input_type.char"),"fulls")){
-		numSets = filenames.size()/3;
-		
-		if(numSets % num_threads == 0){
-			chunkSize = 3*(numSets/num_threads);
-			//Launch a group of threads
-			for(int i=0; i<num_threads-1; ++i){
-				uint k = i*chunkSize;
-				th[i] = std::thread(call_from_thread, par, filenames, k, chunkSize, std::ref(bbs), std::ref(textoutput));
-			}
-			//Last thread saved for main (simply call function) 
-			call_from_thread(par, filenames, (num_threads-1)*chunkSize, chunkSize, bbs, textoutput);
-		}
-		else{
-			chunkTemp = floor(numSets / (num_threads));
-			remainder = numSets % (num_threads);
-			//Launch a group of threads
-			for(int i=0; i<num_threads-1; ++i){
-				if(i < remainder){ chunkSize = 3*(chunkTemp+1); }
-				else{ chunkSize = 3*chunkTemp; }
+		//clock_t temp_t = t;
+        for(uint i=0; i<filenames.size(); i+=3){
+            int sel = processSet(par, filenames, i, bbs, clock());
+			
+			//temp_t = printRuntime(temp_t, clock(), "dataset");
+			
+            if(bbs.size()>0){
+                textoutput <<  filenames[i] << " " << bbs[0].valid << " " << bbs[sel].sx << " " << bbs[sel].sy << " " <<  bbs[sel].ex-bbs[sel].sx << " " << bbs[sel].ey-bbs[sel].sy  << " " << bbs[sel].confidence   << " " << bbs[sel].coverage  <<  "\n";
+                // textoutput <<  filenames[i] << " " << bbs.size() << " " << bbs[sel].ex << " " << bbs[sel].ey << " " << bbs[sel].w << " " << bbs[sel].h << " " << bbs[sel].x << " " << bbs[sel].y << "\n";
+                
+            }else{
+                textoutput <<  filenames[i] << " " << 0 << " " << 0 << " " << 0 << " " <<  0 << " " << 0  << " " << 0   << " " << 0  << "\n";
+            }
+            cout << i << " " << filenames[i] << " of " << filenames.size() <<" bbs.size " <<  bbs.size()<< endl;
 
-				k = i*chunkSize;
-				th[i] = std::thread(call_from_thread, par, filenames, k, chunkSize, std::ref(bbs), std::ref(textoutput));
-			}
-			//Last thread saved for main (simply call function) 
-			call_from_thread(par, filenames, 3*((num_threads-1)*chunkTemp+remainder), 3*chunkTemp, bbs, textoutput);
-		}
-
-		cout << "test join" << endl;
-
-		//Join the threads with the main thread
-		for(int i=0; i<num_threads-1; ++i){
-			th[i].join();
-		}
-		cout << "end join" << endl;
-		
-		
-		//temp_t = printRuntime(temp_t, clock(), "dataset");
-		
+            bbs.clear();
+        }
     }else{
         // (input_type.char == "diffs") --> computeDifferences(images)
-        int sel = processSet(par, filenames, -1, bbs);
+        int sel = processSet(par, filenames, -1, bbs, clock());
         //textoutput << 0 << endl;
         if(bbs.size()>0){
             if(bbs[0].valid){
@@ -860,18 +862,10 @@ int main(int argc, char **argv){
     textoutput.close();
     
     printRuntime(t, clock(), "All of main");
-    cout << "TESTOUT 1" << endl;
+    cout << "TESTOUT" << endl;
 
     //par->save("params.par");
     delete par;
     return 0;
 }
 
-//tbb::parallel_for<size_t>(0, 9, testPrint);
-
-/*
-//tbb::parallel_for(0u, filenames.size(), 3, [=](size_t i){
-	//uint i = k * 3;
-	int sel = processSet(par, filenames, i, bbs);
-}); 
-*/
