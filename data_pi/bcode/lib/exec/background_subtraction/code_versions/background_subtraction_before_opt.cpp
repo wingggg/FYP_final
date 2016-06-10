@@ -5,6 +5,13 @@
 
 clock_t t;
 
+clock_t printRuntime(clock_t start_t, clock_t end_t, string name){
+	clock_t t = end_t - start_t;
+	cout << name << " - runtime: " << t << " clock cycles";
+	cout << " (" << ((float)t)/CLOCKS_PER_SEC << " seconds)" << endl;
+	return end_t;
+}
+
 struct BB
 {
     int    w;
@@ -671,16 +678,23 @@ int selectBBs(vector<BB> &bbs, Params *par){
 }
 
 
-int processSet(Params *par, vector<char *> filenames, int findex, vector<BB> &bbs){
+int processSet(Params *par, vector<char *> filenames, int findex, vector<BB> &bbs, clock_t start_t){
     // cout << "TEST\n";
 
     vector<DARY *> images;
     // cout << " OK 0 " << findex <<  " "<< filenames[findex]<< endl;
+    int t0 = printRuntime(start_t, clock(), "testpoint0");
+    
     loadImages(filenames, findex, images, par);
     // cout << " OK 1 " << endl;
+    int t1 = printRuntime(t0, clock(), "testpoint1");
+    
     if(findex>0){ computeDifferences(images); }
     // cout << " OK 2 " << endl;
+    int t2 = printRuntime(t1, clock(), "testpoint2");
+
     normalizeDifference(images);
+    int t3 = printRuntime(t2, clock(), "testpoint3");
 
     DARY *output = new DARY(images[0]->y(),images[0]->x(),UCHAR1FLOAT1);
     output->set(0.0);
@@ -702,6 +716,7 @@ int processSet(Params *par, vector<char *> filenames, int findex, vector<BB> &bb
         // if(bbs.size()>0){ sel=0; }
     }
     // cout << " OK 4 " << endl;
+    int t4 = printRuntime(t3, clock(), "testpoint4");
     if(findex==-1){ findex=1; }
     // coutBB used in drawBB prints to terminal
     if((int)par->getValue("draw_images.int")){ drawBB(filenames[findex],output,bbs,sel); }
@@ -710,12 +725,6 @@ int processSet(Params *par, vector<char *> filenames, int findex, vector<BB> &bb
     return sel;
 }
 
-clock_t printRuntime(clock_t start_t, clock_t end_t, string name){
-	clock_t t = end_t - start_t;
-	cout << name << " - runtime: " << t << " clock cycles";
-	cout << " (" << ((float)t)/CLOCKS_PER_SEC << " seconds)" << endl;
-	return end_t;
-}
 
 int main(int argc, char **argv){
 	t = clock();
@@ -757,7 +766,7 @@ int main(int argc, char **argv){
     loadFileNames(par->getString("input_images.char"),filenames);
     if(filenames.size()<1){ return 1; }
     
-    printRuntime(t, clock(), "Load files");
+    printRuntime(t, clock(), "Load file names");
 
     float conf_factor = par->getValue("conf_factor.float");
     ofstream textoutput(par->getString("output_file.char"));
@@ -769,7 +778,7 @@ int main(int argc, char **argv){
     if(!strcmp(par->getString("input_type.char"),"fulls")){
 		//clock_t temp_t = t;
         for(uint i=0; i<filenames.size(); i+=3){
-            int sel = processSet(par, filenames, i, bbs);
+            int sel = processSet(par, filenames, i, bbs, clock());
 			
 			//temp_t = printRuntime(temp_t, clock(), "dataset");
 			
@@ -786,7 +795,7 @@ int main(int argc, char **argv){
         }
     }else{
         // (input_type.char == "diffs") --> computeDifferences(images)
-        int sel = processSet(par, filenames, -1, bbs);
+        int sel = processSet(par, filenames, -1, bbs, clock());
         //textoutput << 0 << endl;
         if(bbs.size()>0){
             if(bbs[0].valid){
