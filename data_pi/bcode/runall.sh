@@ -1,9 +1,9 @@
-git add /home/karenng/Desktop/FYP_final/data/bcode/lib/exec/background_subtraction/background_subtraction.cpp
+git add /home/pi/Documents/FYP_final/data_pi/bcode/lib/exec/background_subtraction/background_subtraction.cpp
 
-cd /home/karenng/Desktop/FYP_final/data/bcode/lib/exec/background_subtraction
+cd /home/pi/Documents/FYP_final/data_pi/bcode/lib/exec/background_subtraction
 make
 
-cd /home/karenng/Desktop/FYP_final/data/bcode/bin
+cd /home/pi/Documents/FYP_final/data_pi/bcode/bin
 ./background_subtraction.ln -i ./datasets/K01.txt -o ./datasets/K01_out.txt
 ./background_subtraction.ln -i ./datasets/K07.txt -o ./datasets/K07_out.txt
 ./background_subtraction.ln -i ./datasets/KDC2-KD04.txt -o ./datasets/KDC2-KD04_out.txt
@@ -39,5 +39,5 @@ cd /home/karenng/Desktop/FYP_final/data/bcode/bin
 ./background_subtraction.ln -i ./datasets/W17.txt -o ./datasets/W17_out.txt
 
 
-cd /home/karenng/Desktop/FYP_final/data/bcode/bin
+cd /home/pi/Documents/FYP_final/data_pi/bcode/bin
 git add ./datasets/
