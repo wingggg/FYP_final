@@ -6,10 +6,12 @@
 #include <iostream>
 #include <thread>
 #include <algorithm>
+#include <time.h>	/* time_t, difftime */
 
 //using namespace tbb;
 
 clock_t t;
+time_t timer_start, timer_end;
 
 int counter = 0;
 
@@ -685,16 +687,16 @@ int processSet(Params *par, vector<char *> filenames, int findex, vector<BB> &bb
     cout << "counter: " << counter << endl;
 
     vector<DARY *> images;
-     cout << " OK 0 " << findex <<  " "<< filenames[findex]<< endl;
+    // cout << " OK 0 " << findex <<  " "<< filenames[findex]<< endl;
     loadImages(filenames, findex, images, par);
-     cout << " OK 1 " << findex <<  " "<< filenames[findex]<< endl;
+    // cout << " OK 1 " << findex <<  " "<< filenames[findex]<< endl;
     if(findex>0){ computeDifferences(images); }
-     cout << " OK 2 " << findex <<  " "<< filenames[findex]<< endl;
+    // cout << " OK 2 " << findex <<  " "<< filenames[findex]<< endl;
     normalizeDifference(images);
 
     DARY *output = new DARY(images[0]->y(),images[0]->x(),UCHAR1FLOAT1);
     output->set(0.0);
-     cout << " OK 3 " << findex <<  " "<< filenames[findex]<< endl;
+    // cout << " OK 3 " << findex <<  " "<< filenames[findex]<< endl;
     detectDifferences(images, output, par->getValue("diff_thres.int"), par->getValue("median_size.int"));
 
     // Detect using HOG (histogram of oriented gradients)
@@ -705,18 +707,18 @@ int processSet(Params *par, vector<char *> filenames, int findex, vector<BB> &bb
     // Bounding box method
     int labels;
     labelSegments(output, labels);
-    cout << " OK 4 " << findex <<  " "<< filenames[findex]<< endl;
+    //cout << " OK 4 " << findex <<  " "<< filenames[findex]<< endl;
     int sel=-1;
     if(labels>1){
         findBBs(output,bbs,labels);
         sel=selectBBs(bbs, par);
         // if(bbs.size()>0){ sel=0; }
     }
-    cout << " OK 5 " << findex <<  " "<< filenames[findex]<< endl;
+    //cout << " OK 5 " << findex <<  " "<< filenames[findex]<< endl;
     if(findex==-1){ findex=1; }
     // coutBB used in drawBB prints to terminal
     if((int)par->getValue("draw_images.int")){ drawBB(filenames[findex],output,bbs,sel); }
-    cout << " OK 6 " << findex <<  " "<< filenames[findex]<< endl;
+    //cout << " OK 6 " << findex <<  " "<< filenames[findex]<< endl;
 
     delete output;
     return sel;
@@ -740,7 +742,7 @@ void forEachSet(Params *par, vector<char *> filenames, int i, vector<BB> &bbs, o
 	}else{
 		textoutput <<  filenames[i] << " " << 0 << " " << 0 << " " << 0 << " " <<  0 << " " << 0  << " " << 0   << " " << 0  << "\n";
 	}
-	cout << i << " " << filenames[i] << " of " << filenames.size() <<" bbs.size " <<  bbs.size()<< endl;
+	//cout << i << " " << filenames[i] << " of " << filenames.size() <<" bbs.size " <<  bbs.size()<< endl;
 	
 	bbs.clear();
 }
@@ -751,13 +753,14 @@ void call_from_thread(Params *par, vector<char *> filenames, uint start, uint ch
 	for(int i=start; i<end; i+=3){
 		forEachSet(par, filenames, i, bbs, textoutput);
 		
-		cout << "Thread " << floor(start/chunkSize) << ": set " << i << " processed" << endl;
+		//cout << "Thread " << floor(start/chunkSize) << ": set " << i << " processed" << endl;
 	}
 }
 
 
 int main(int argc, char **argv){
-	t = clock();
+	//t = clock();
+	time(&timer_start); // timer_start retuned with current time
 	cout << "calculating..." << endl;
 
     Params *par = new Params();
@@ -799,7 +802,7 @@ int main(int argc, char **argv){
     uint k, numSets, chunkSize, chunkTemp, remainder;
     const int num_threads = 8;
 	std::thread th[num_threads];
-	clock_t temp_t = t;
+	//clock_t temp_t = t;
     
     
     printRuntime(t, clock(), "Load files");
@@ -835,13 +838,13 @@ int main(int argc, char **argv){
 			call_from_thread(par, filenames, 3*((num_threads-1)*chunkTemp+remainder), 3*chunkTemp, bbs, textoutput);
 		}
 
-		cout << "test join" << endl;
+		//cout << "test join" << endl;
 
 		//Join the threads with the main thread
 		for(int i=0; i<num_threads-1; ++i){
 			th[i].join();
 		}
-		cout << "end join" << endl;
+		//cout << "end join" << endl;
 		
 		
 		//temp_t = printRuntime(temp_t, clock(), "dataset");
@@ -860,8 +863,11 @@ int main(int argc, char **argv){
 
     textoutput.close();
     
-    printRuntime(t, clock(), "All of main");
-    cout << "TESTOUT 1" << endl;
+    time(&timer_end);
+    double seconds = difftime(timer_end, timer_start);
+    cout << par->getString("input_images.char") << " - file runtime: " << seconds << endl;
+    //printRuntime(t, clock(), "All of main");
+    //cout << "TESTOUT 1" << endl;
 
     //par->save("params.par");
     delete par;

@@ -5,13 +5,15 @@
 #include <time.h>
 #include <iostream>
 #include <thread>
-#include <mutex>
+//#include <mutex>
+#include <time.h>	/* time_t, difftime */
 
 //using namespace tbb;
-int global_counter = 0;
-std::mutex counter_mutex; 
+//int global_counter = 0;
+//std::mutex counter_mutex; 
 
 clock_t t;
+time_t timer_start, timer_end;
 
 struct BB
 {
@@ -737,14 +739,15 @@ void call_from_thread(Params *par, vector<char *> filenames, int k, vector<BB> &
 	}else{
 		textoutput <<  filenames[k] << " " << 0 << " " << 0 << " " << 0 << " " <<  0 << " " << 0  << " " << 0   << " " << 0  << "\n";
 	}
-	cout << k << " " << filenames[k] << " of " << filenames.size() <<" bbs.size " <<  bbs.size()<< endl;
+	//cout << k << " " << filenames[k] << " of " << filenames.size() <<" bbs.size " <<  bbs.size()<< endl;
 	
 	bbs.clear();
 }
 
 
 int main(int argc, char **argv){
-	t = clock();
+	//t = clock();
+	time(&timer_start); // timer_start retuned with current time
 	cout << "calculating..." << endl;
 
     Params *par = new Params();
@@ -786,10 +789,10 @@ int main(int argc, char **argv){
     int k, sel;
     const int num_threads = filenames.size()/3;
 	std::thread th[num_threads];
-	clock_t temp_t = t;
+	//clock_t temp_t = t;
     
     
-    printRuntime(t, clock(), "Load files");
+    //printRuntime(t, clock(), "Load files");
 
     float conf_factor = par->getValue("conf_factor.float");
     ofstream textoutput(par->getString("output_file.char"));
@@ -803,13 +806,13 @@ int main(int argc, char **argv){
 			//temp_t = printRuntime(temp_t, clock(), "dataset");
 		}
 		
-		cout << "test join" << endl;
+		//cout << "test join" << endl;
 
 		//Join the threads with the main thread
 		for(int i=0; i<num_threads; ++i){
 			th[i].join();
 		}
-		cout << "end join" << endl;
+		//cout << "end join" << endl;
 		
     }else{
         // (input_type.char == "diffs") --> computeDifferences(images)
@@ -825,8 +828,11 @@ int main(int argc, char **argv){
 
     textoutput.close();
     
-    printRuntime(t, clock(), "All of main");
-    cout << "TESTOUT" << endl;
+    time(&timer_end);
+    double seconds = difftime(timer_end, timer_start);
+    cout << par->getString("input_images.char") << " - file runtime: " << seconds << endl;
+    //printRuntime(t, clock(), "All of main");
+    //cout << "TESTOUT" << endl;
 
     //par->save("params.par");
     delete par;
