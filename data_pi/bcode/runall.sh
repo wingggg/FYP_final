@@ -1,7 +1,7 @@
 git add /home/pi/Documents/FYP_final/data_pi/bcode/lib/exec/background_subtraction/background_subtraction.cpp
 
 cd /home/pi/Documents/FYP_final/data_pi/bcode/lib/exec/background_subtraction
-make
+make -j 4
 
 cd /home/pi/Documents/FYP_final/data_pi/bcode/bin
 ./background_subtraction.ln -i ./datasets/K01.txt -o ./datasets/K01_out.txt
