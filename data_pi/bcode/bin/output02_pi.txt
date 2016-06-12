@@ -1,6 +1,0 @@
-/home/pi/Documents/FYP_final/data_pi/Background_test/K07/IMG_0298.JPG 1 183 83 110 58 0.250321 0.104248
-/home/pi/Documents/FYP_final/data_pi/Background_test/K07/IMG_0292.JPG 0 32 82 260 92 0.153646 0.39085
-/home/pi/Documents/FYP_final/data_pi/Background_test/K07/IMG_0295.JPG 0 0 0 0 0 0 0
-/home/pi/Documents/FYP_final/data_pi/Background_test/K07/IMG_0289.JPG 0 244 60 95 58 0.145888 0.0900327
-/home/pi/Documents/FYP_final/data_pi/Background_test/K07/IMG_0280.JPG 0 0 0 0 0 0 0
-/home/pi/Documents/FYP_final/data_pi/Background_test/K07/IMG_0283.JPG 0 8 13 140 118 0.187334 0.269935
