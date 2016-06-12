@@ -1,0 +1,9 @@
+/home/pi/Documents/FYP_final/data_pi/Background_test/W09/IMG_0745.JPG 1 14 10 320 152 0.293627 0.794771
+/home/pi/Documents/FYP_final/data_pi/Background_test/W09/IMG_0748.JPG 0 0 0 0 0 0 0
+/home/pi/Documents/FYP_final/data_pi/Background_test/W09/IMG_0751.JPG 0 245 1 12 10 1.31452 0.00196078
+/home/pi/Documents/FYP_final/data_pi/Background_test/W09/IMG_0754.JPG 0 0 0 0 0 0 0
+/home/pi/Documents/FYP_final/data_pi/Background_test/W09/IMG_0757.JPG 1 2 61 28 56 1.10716 0.0256209
+/home/pi/Documents/FYP_final/data_pi/Background_test/W09/IMG_0760.JPG 1 10 55 78 98 0.565977 0.124902
+/home/pi/Documents/FYP_final/data_pi/Background_test/W09/IMG_0763.JPG 0 13 131 4 4 1.33952 0.000261438
+/home/pi/Documents/FYP_final/data_pi/Background_test/W09/IMG_0766.JPG 1 15 71 94 78 0.814734 0.119804
+/home/pi/Documents/FYP_final/data_pi/Background_test/W09/IMG_0769.JPG 1 26 51 88 104 0.338193 0.149542

@@ -1,0 +1,15 @@
+/home/pi/Documents/FYP_final/data_pi/Background_test/SY09/IMG_0703.JPG
+/home/pi/Documents/FYP_final/data_pi/Background_test/SY09/IMG_0704.JPG
+/home/pi/Documents/FYP_final/data_pi/Background_test/SY09/IMG_0705.JPG
+/home/pi/Documents/FYP_final/data_pi/Background_test/SY09/IMG_0706.JPG
+/home/pi/Documents/FYP_final/data_pi/Background_test/SY09/IMG_0707.JPG
+/home/pi/Documents/FYP_final/data_pi/Background_test/SY09/IMG_0708.JPG
+/home/pi/Documents/FYP_final/data_pi/Background_test/SY09/IMG_0709.JPG
+/home/pi/Documents/FYP_final/data_pi/Background_test/SY09/IMG_0710.JPG
+/home/pi/Documents/FYP_final/data_pi/Background_test/SY09/IMG_0711.JPG
+/home/pi/Documents/FYP_final/data_pi/Background_test/SY09/IMG_0712.JPG
+/home/pi/Documents/FYP_final/data_pi/Background_test/SY09/IMG_0713.JPG
+/home/pi/Documents/FYP_final/data_pi/Background_test/SY09/IMG_0714.JPG
+/home/pi/Documents/FYP_final/data_pi/Background_test/SY09/IMG_0715.JPG
+/home/pi/Documents/FYP_final/data_pi/Background_test/SY09/IMG_0716.JPG
+/home/pi/Documents/FYP_final/data_pi/Background_test/SY09/IMG_0717.JPG

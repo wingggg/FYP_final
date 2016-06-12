@@ -1,0 +1,844 @@
+.\"@(#)95/02/17 vers.8.3 LL.3"
+.TH LL 3  "Thu Jul 21 14:12:27 BST 1994"
+.SH NAME
+ApplyLL, ConsCopyLL, ConsLL, ConsPtrLL, ConsistentLL, DelElmLL,
+DelElmNeLL, DelElmPrLL, DestLL , EmptyLL, File2LL,
+FileNoExit2LL, FirstElmLL, ForeachDownLL_M, ForeachLL_M,
+FprintLL, IndexElmLL, InitLL, InsAftLL, InsAftLLf, InsBefLL,
+InsBefLLf, InsFirstLL, InsFirstLLf, InsLastLL, InsLastLLf,
+IsElmLL, IsEmptyLL, IsFirstElmLL, IsLastElmLL, LL2ArrStr,
+LL2File, LastElmLL, LinkAftLL, LinkBefLL, LinkInsAftLL,
+LinkInsAftLLf, LinkInsBefLL, LinkInsBefLLf, LinkInsFirstLL,
+LinkInsFirstLLf, LinkInsLastLL, LinkInsLastLLf, LookInLL,
+MoveHeadAftLL, MoveHeadBefLL, MoveHeadFirstLL, MoveHeadLastLL,
+MoveListAftLL, MoveListBefLL, MoveListFirstLL, MoveListLastLL,
+MoveTailAftLL, MoveTailBefLL, MoveTailFirstLL, MoveTailLastLL,
+NextElmLL, NextCElmLL, NthElmLL, PrevElmLL,  PrevCElmLL,
+ReadLL, RelNthElmLL, RelCNthElmLL, ReverseLL,
+SafeForeachLL_M, SizeLL, SortLL, SscanLL, UnlinkLL, UnlinkNeLL,
+UnlinkPrLL, WriteLev1LL, WriteLev2LL, WriteLev3LL, WriteLevNLL,
+printLL - a double linked list library
+
+.SH SYNOPSIS
+.nf
+#include ''LL.h''
+.LP
+t_LL ConsLL ();
+t_LL   InitLL(struct s_LL* head);
+t_LL ConsCopyLL(t_LL dest);
+t_LL ConsPtrLL(t_LL dest);
+void * DestLL(t_LL list);
+.LP
+t_LL   EmptyLL  (t_LL list)
+int    IsEmptyLL(t_LL list)
+t_LL   ReverseLL(t_LL list)
+void * ApplyLL (t_LL list, void * (*apply) (void *))
+t_LL   SortLL (t_LL list,  int (*compar) (void *, void*))
+long   SizeLL (t_LL list);
+void * LookInLL(t_LL list);
+.LP
+t_LL File2LL(char * name); 
+t_LL FileNoExit2LL(char * name); 
+void LL2File(t_LL list, char * name);
+char ** LL2ArrStr(t_LL list);
+.LP
+t_LL ReadLL(char * filename);
+void WriteLev1LL(char * f_name, t_LL list);
+void WriteLev2LL(char * f_name, t_LL list); 
+void WriteLev3LL(char * f_name, t_LL list);
+void WriteLevNLL(char * f_name, t_LL list, int l); /* write list of lev l*/
+.LP
+#define InsBefLL(p_el,data)   InsBefLLf(p_el,   sizeof(data), &data)
+#define InsAftLL(p_el,data)   InsAftLLf(p_el,   sizeof(data), &data)
+#define InsFirstLL(list,data) InsFirstLLf(list,   sizeof(data), &data)
+#define InsLastLL(list,data)  InsLastLLf(list,   sizeof(data), &data)
+.LP
+void * InsBefLLf (void * p_elm, size_t size, void * data);
+void * InsAftLLf (void * p_elm, size_t size, void * data);
+void * InsFirstLLf (t_LL list, size_t size, void * data);
+void * InsLastLLf (t_LL list,  size_t size, void * data);
+.LP
+#define LinkInsBefLL(p_el,data)   LinkInsBefLLf(p_el, sizeof(data),&(data))
+#define LinkInsAftLL(p_el,data)   LinkInsAftLLf(p_el, sizeof(data),&(data))
+#define LinkInsFirstLL(list,data) LinkInsFirstLLf(list,sizeof(data),&(data))
+#define LinkInsLastLL(list,data)  LinkInsLastLLf(list, sizeof(data),&(data))
+.LP
+void * LinkInsFirstLLf(t_LL list, size_t size, void * newEl);
+void * LinkInsLastLLf(t_LL list,  size_t size, void * newEl);
+void * LinkInsAftLLf(void * curr, size_t size, void * newEl);
+void * LinkInsBefLLf(void * curr, size_t size, void * newEl);
+.LP
+void  DelElmLL   (void * p_elm);  
+void * DelElmNeLL(void * p_elm);       
+void * DelElmPrLL(void * p_elm);       
+.LP
+t_LL  MoveListFirstLL(t_LL  dest, t_LL src);
+t_LL  MoveListLastLL(t_LL  dest, t_LL src);
+void *  MoveListAftLL(void *el,  t_LL src);
+void *  MoveListBefLL(void *el,  t_LL src);
+.LP
+t_LL  MoveHeadFirstLL(t_LL  dest, t_LL src, void *head);
+t_LL  MoveHeadLastLL(t_LL  dest, t_LL src, void *head);
+void *  MoveHeadAftLL(void *el,  t_LL src, void *head);
+void *  MoveHeadBefLL(void *el,  t_LL src, void *head);
+.LP
+t_LL  MoveTailFirstLL(t_LL  dest, t_LL src, void *tail);
+t_LL  MoveTailLastLL(t_LL  dest, t_LL src, void *tail);
+void *  MoveTailAftLL(void *el,  t_LL src, void *tail);
+void *  MoveTailBefLL(void *el,  t_LL src, void *tail);
+.LP
+void * FirstElmLL (t_LL list);
+void *  LastElmLL (t_LL list);
+void *   NthElmLL (t_LL list, long n);
+void *  NextElmLL (void * p_elm);
+void *  PrevElmLL (void * p_elm);
+void *  RelNthElmLL (void * p_elm, long n);
+void *  NextCElmLL (void * p_elm);
+void *  PrevCElmLL (void * p_elm);
+void *  RelCNthElmLL (void * p_elm, long n);
+.LP
+void * LinkAftLL(void * curr,void * new);  
+void * LinkBefLL(void * curr,void * new); 
+void * UnlinkLL(void * el);
+void * UnlinkNeLL(void * el);
+void * UnlinkPrLL(void * el);
+.LP
+int   IsElmLL  (void * p_elm);
+int   IsFirstElmLL  (void * p_elm); 
+int   IsLastElmLL   (void * p_elm);
+long  IndexElmLL    (t_LL list, void *ind_el);
+.LP
+void ConsistentLL(t_LL list); 
+
+.LP
+ForeachLL_M(list,p_elm)
+ForeachDownLL_M(list,p_elm)
+SafeForeachLL_M(list,p_elm,next_p_elm)
+.LP
+char * FprintLL(t_LL list, FILE * file, char *b, char *control, char *a) ;
+char * printLL(t_LL list,  char * control);
+char * SscanLL(t_LL list, char *string, char * control, int termination);
+.SH DESCRIPTION
+.SS List construction and destruction
+LL is a library implementing double-linked lists.
+Variables of any type can be stored in a LL list (without
+requiring the user to declare a new type 
+[eg. containtaing 'link info' and 'data stored']) .
+As a consequence, lists of lists of .. (on so on to any depth)  can be created.
+Even individual elements of a single list may be of different types.
+.LP
+An instance of a list is created using either ConsLL, ConsCopyLL, InitLL or
+ConsPtrLL functions. It is recommended to call one of the functions at
+the point of declaration of a list variable; A list variable must be
+initialised by a call to one of the constructor functions before 
+a list is passed to any function in the LL library. 
+.LP
+ConsLL() creates an empty list. ConsCopyLL(src) creates a new copy
+of an existing list. ConsPtrLL(src) creates a list of pointers to
+elements stored  in list 'src'.  DestLL(list) destroys a list, ie. deletes
+all elements and frees all memory allocated for the list (ie. the memory
+allocated by ConsLL/ConsCopyLL/ConsPtrLL and by the 'insert element' 
+family of functions).  Memory pointed to by elements of  the list is not
+freed. The use of InitLL() function assumes very good understanding of
+the implementation of the LL library and should be avoided by beginners.
+InitLL initializes a list similarly to ConsLL, but the head of the list
+is stored in a structure provided by the user (rather than dynamically
+allocated as in ConsLL). Lists created using InitLL must not be destroyed
+using DestLL, such list should only be emptied using EmptyLL.
+
+.SS Basic functions on lists
+EmptyLL(list) deletes all elements from  list 'list'. EmptyLL
+returns its parameter - an empty list 'list'.
+.LP
+IsEmptyLL(list) returns a non-zero value if 'list' is an empty list, 0
+otherwise.
+.LP
+ReverseLL(list) reverses the element order in a list. ReverseLL retruns
+its parameter.
+.LP
+ApplyLL(list,function) calls function 'function' in a loop. Pointers to
+elements of the list are one by one passed to 'function'.
+The loop is terminated when either pointers to all elements
+were passed to the function or the function 'function' returned a
+non-NULL value. ApplyLL returns NULL in the former case, an the return
+value of 'function' if it is non-NULL. If 'function' is  to be applied
+to all elements the user-defined  'function' must therefore always return NULL.
+The latter mode can be used as 'FindElement' if function 'function' returns a
+pointer to an element satisfying a certain condition.
+.LP
+SizeLL(list) returns the number of elements in the list. The complexity of
+the function is O(n) (ie. the size of list is established by scanning
+through the list).
+.LP
+SortLL(list,compare) sorts elements of a list according to the 'compare'
+function. The 'compare' function has a format identical to the comparison 
+function of qsort(3). Two different sorting algorithms have been
+implemented. A fast mergesort provided by David Kastrup (MergeSortLL) and
+SysSortLL which  builds an array of pointers to list elements
+and then calls the standard C function qsort(3). 
+SortLL is mapped to MergeSortLL by a #define directive
+because in my tests MergeSortLL outperformed SysSortLL by a factor of two. 
+The user can change the #define in LL.h to map SortLL to whichever sort
+is performing best on his machine/for his data. MergeSortLL and SysSortLL
+can be called directly. See examples 'exSortText' and 'exSortTime' 
+in the EXAMPLE sections. 
+.LP
+LookInLL(list) creates a look-up table for list 'list' that enables random
+access to elements. If the type of elements in the list is 'int' than the
+type of the look-up table is of type int **table. *table[i] returns the
+value of the i-th element of 'list'. The ordering reflects the position of
+an element at the time of LookInLL call. Sorting 'list' according to
+different criteria and creating a look-up table after every sort allows to
+order elements according to multiple criteria. It is an error to use the
+look-up table after any function that deletes elements from a list as any
+the pointer in 'table' can reference a deallocated part of memory.    
+It is possible to use the table after any function that inserts,
+moves, changes value of list elements. *table[i] can be then interpreted as
+the value of the i-th element of list 'list' at the time of LookInLL call
+regardless of the fact that the element may be in a different position or a
+member of a different list. The memory allocated by LookInLL for the table
+should be freed by calling free(table).
+
+.SS Read/Write Text Files
+File2LL(name) opens a file and creates a list, each element holding
+a single line in a form of a zero terminated string. 
+If the file cannot be opened, File2LL aborts the program.
+FileNoExit2LL(name) has the same functionality, but returns an empty
+list when on read/open file failure. LL2File(list,name) outputs list
+contents to file name, one element per line. The list is assumed to 
+contain zero-terminated strings. If '-' is passed as name 
+stdin/stdout in used as the input/output file.
+LL2ArrStr(list) assumes that the list holds zero-terminated strings.
+A NULL-terminated array of char* pointers to copies of these strings
+is returned.
+
+.SS Reading and Writing from/to .LL file
+The ReadLL and Write....LL family of functions provide an external
+representation for lists. The WriteLev1LL outputs a list of x, where x
+is any type besides a list, to a .LL file. If this file name is passed to
+ReadLL a an identical list is recreated. So Write....LL in combination
+with ReadLL can be used to transfer lists efficiently from one process
+to another. WriteLev2LL writes out a list of lists of x (where x is any type
+besides a list), WriteLev3LL writes out a list of lists of lists of x and
+WriteLevNLL writes a list of lists etc. of depth N. ReadLL will read a 
+file written by any function of the Write....LL family. List containing 
+pointers can be transferred in the same way (ie. the recreated list will
+contain fields for pointers), but the addresses contained in those fields
+are of no use. ReadLL/Write....LL recognise the special name "-" as
+'standard input'/'standard output'. See 'exRead' and 'exWrite' for typical
+usage.
+
+.SS Inserting and Deleting elements
+Macros InsBefLL, InsAftLL, InsFirstLL, InsLastLL and functions
+InsBefLLf, InsAftLLf, InsFirstLLf, InsLastLLf allow user to insert data
+of any type into a list. After InsFirstLL(f)/InsLastLL(f), the new
+element will become the first/last element of a list.  Using
+InsAftLL(f)/InsBefLL(f), data can be inserted in an arbitrary place in
+a list after/before a given element. The functions (as opposed to
+macros) must be used when  size of the of the inserted object is not
+known at compilation time (for instance in the case of a
+zero-terminated string). Insert functions create a new element (element
+= stored object (data) + neccessary overhead (links etc.)) by
+allocating memory and copying the object in the element.
+LinkInsBefLL,LinkInsAftLL etc. functions operate
+exactly as their Ins....LL counterparts with the only difference that the
+user is responsible for allocating/declaring suitable structures for
+a list element (requires good knowledge of the LL library, not recommended
+for beginners). 
+.LP
+DelElmLL, DelElmNeLL, DelElmPrLL delete an element from a list. DelElmNeLL
+returns a pointer to the next element, DelElmPrLL to the previous element.
+ 'exBasic' shows typical usage of DelElmLL.
+.SS Moving Lists and Sublists
+The Move family of functions can be used to cut and paste parts of lists.
+All Move functions have the same structure: MoveSomethingSomewhereLL.
+The structure MoveSomethingSomewhereLL is similar to the naming system
+of insert functions (eg. InsLastElmLL). MoveList___LL moves the whole source
+list (ie. the src list becomes empty)  somewhere (First,Last,Aft(er)
+element, Bef(ore)) into the destination list. The Head and Tail functions
+are analogous, but just Head (all elements up to (not including) the 'head'
+one)  or Tail(all elements from 'tail'(including) to end) is moved. The
+including/not including choice was made to preserve Head+Tail=List.
+.SS Accessing a particular element
+FirstElmLL(list)/LastElmLL(list) return a pointer to the first element
+in 'list'. NextElmLL(p_elm)/PrevElmLL(p_elm)  return a pointer to the
+next/previous element in 'list'. To access all elements in a list the
+following construct can be used:
+.LP
+.nf
+for(pElm=FirstElmLL(list);IsElmLL(pElm);pElm=NextElmLL(pElm))
+.fi
+.LP
+The construct is used so often that the it is provided  in a form of
+the ForeachLL_M macro. A similar macro, ForeachDownLL_M, can be used to
+scan all the elements starting with the last. The user must ensure that
+the current 'pElm' is not deleted in the body of the for loop - the 
+p_elm=NextElmLL(pElm) would fail. Use SafeForeachLL_M in this case. 
+.LP
+NthElmLL(list,n) returns a pointer to the n-th element of the list. 'n' can
+be negative. Note that the cost of the operations is proportional to 'n';
+this functions should be therefore used sparingly; if random access to
+elements is required, use LookInLL. RelNthElmLL(p_elm,n) returns a pointer
+to an element with a distance (relative position) 'n' from 'p_elm'. See
+also the description and examples for RelCNthElmLLl).
+IndexElmLL(list,p_elm) returns the position (order) of 'p_elm' in 'list'.
+.LP
+NextCElmLL(p_elm)/PrevCElmLL(p_elm)  are analogous to
+NextElmLL(p_elm)/PrevElmLL(p_elm), but the list is treated as circular.
+For a non-empty list, NextCElmLL(p_elm) returns pointer to the
+next elment or, if 'p_elm' is the last element of the list, pointer to 
+the first element. Similarly, PrevCElmLL returns pointer to the previous
+element or, if 'p_elm' points to the first element, pointer to the last element.
+For a non-empty list NextCElmLL/PrevCElmLL skips the
+list head and always points to a genuine element and; the result need not
+be tested by IsElmLL.  For an empty list the functions return pointer to
+the head.
+.LP
+RelCNthElmLL(p_elm,n) returns a pointer to an element at distance 
+(relative position) 'n' from 'p_elm' treating the list as circular - 
+the 'head' is therefore not counted. So 
+.nf
+  RelCNthElmLL(FirstElmLL(list),-1);
+.fi
+returns pointer to the last elment. In constrast, 
+RelNthElm(FirstElmLL(list),-1) returns pointer to the head. This is
+consistent with the NthElmLL and LookInLL functions, where head is
+accessed as 0-th element. The result of RelNthElm(FirstElmLL(list),-1) 
+can be predicted by adding -1 to 1  (for the frist element). Zero 
+is obtained and the corresponding element, the head, is returned.
+
+.SS Unlinking and Linking 
+The Link...LL (LinkAftLL, LinkBefLL)  and Unlink..LL (UnlinkLL, UnlinkPrLL,
+UnlinkNeLL) family of functions allows to move individual 
+elements between lists or to a different position in a list. The effect
+of Unlinking and Linking in at a different position is similar to
+first retrieving the element value, deleting the element and then 
+inserting the element in the desired position. The advantages of
+Linking and Unlinking are: a. a significantly improved efficiency
+(eg. no malloc and free calls are needed) b. pointers to the elements are still valid if the element was moved
+through Link/Unlink (in the case of delete/insert the element is stored
+generally at  a different memory location and all pointers to it have
+to be reset). If a  number of elements is moved use one of the Move...LL 
+functions instead. An example of Linking and Unlining is given in
+ 'exSortTime'. LinkAftLL/ LinkBefLL link after and before a given element.
+UnlinkLL, UnlinkPrLL, UnlinkNeLL perform the same operation, UnlinkLL
+retruns its argument, UnlinkPrLL returns a pointer to the previous element
+and UnlinkNeLL returns a pointer to the next element in the list.
+
+.SS Miscellaneous functions
+IsElmLL(p_elm) tests for the end of a list.  IsFirstElmLL/IsLastElmLL test
+for the first and last element of the list. 
+.LP
+ConsistentLL(list) runs a couple of check trying to establish whether
+the list is corrupted. 
+
+.SS Print/Scan functions
+It is fair to start this section with a WARNING:
+the functions bellow are NOT PORTABLE and NOT SAFE, if used
+for lists containing STRUCTURES.  Functions FprintLL, printLL and
+SscanLL work for list of any primitive types (int, char *, double, float, ..)
+and for structures that don't contain 'padding' bytes because of alignment
+requirments of its components
+(whether a structure contains these bytes is compiler/OS depend).
+  I recommend these functions be used only with a single
+conversion specification (eg. "%s" or "%4.2g"). Conversions strings with
+more than one specification should be used for DEBUGGING purposes
+(called directly from the debug. command line) or possibly
+for fast prototyping. 
+.LP
+FprintLL(list,file,before,control,after) first writes string 'before'
+to 'file'. Then contents of all elements is output according to 
+the 'control' string. Finally, the 'after' string is written to 'file'. 
+With two exceptions,
+the control string is identical to the control string of the printf(3)
+family of functions. Because Fprintf must distinguish between double and
+float parameters, %lf, %lg, %le conversion were introduced for fields of type
+double. The %f, %g, %e conversions are used for fields of type float. The %S
+conversion is used for a zero-terminated string field. The %s is used for
+char* field (as in printf). Example usage is shown in examples 'exBasic',
+ 'exCutPaste' and 'exPrintScan'. The format
+specification can contain printf(3) conversion flags, modifiers, etc. The
+field suppression character '*' may be used.  FprintLL always returns
+NULL.
+.LP
+printLL(list,control) is identical to FprintLL(list,stdout,"",control,"\\n").
+.LP
+SscanLL(list,string,control,termination) converts 'string' into structures
+defined by the control string and appends the structures to 'list'. The
+operation can be viewed as parsing of the string into a list of identical
+elements. The parsing is terminated either after converting a 'termination'
+number of elements (if 'termination' is positive) or after the end of 'string'
+was reached (if 'termination is 0). If 'termination' is equal to
+ -1, then the first token of 'string' defines the number of tokens
+converted. To skip data in 'string', use a conversion with '*' suppressing
+the assigment. See 'exPrintScan' for details.
+
+.SH Example exBasic 
+.RS -5
+.nf
+/*----------------- LL library example: basic functions ---------------- */
+static char sccsid[]="@(#)94/01/03 g.matas@ee.surrey.ac.uk 6.2 exBasic.c";
+
+#include "LL.h"
+#include <stdio.h>
+#include <string.h>
+
+/*-----------------------------------------------------------------------*/
+/* 
+  This example shows HOW TO: 
+    - create a list (ConsLL)
+    - insert elements into it at various positions (start, end, arbitrary) 
+    - print out list contents (ApplyLL)
+    - print out list using printLL, FprintLL (see warning in LL.h!)
+    - sort a list (SortLL)
+    - iterate through a list (ForeachLL_M)
+    - destroy (free) a list (DestLL)
+*/
+/*-----------------------------------------------------------------------*/
+static void * pr(void *el)     /* print a string given a pointer to elem */
+  { printf("%s  ",*(char**)el); return NULL; }
+
+static
+int AlfComp(const void *el1, const void *el2)     /* comparison for sort */
+ { return strcmp(*(char * const *) el1, *(char * const *) el2); }
+
+/*---------------------------------------------------------------------*/
+int main (int argc, char ** argv)
+{
+  t_LL list =  ConsLL();
+  char  *string1 = "s1";     /* some arbitrary strings .. */
+  char  *string2 = "s2";
+  char  *string3 = "s3";
+
+  fprintf(stderr,"usage: ex1 arg1 arg2 .... .... \n\n"); 
+
+  while (argc-->0){
+   InsLastLL(list,argv[argc]);
+  }
+
+  printf("---- a list has been built from the command line arguments: \n"); 
+  ApplyLL(list,pr);  /* printing the whole list by appling pr to all elems.*/
+
+
+  InsFirstLL(list,string1);
+  InsLastLL(list,string2);
+  InsBefLL(NthElmLL(list,4),string3);
+
+  printf("\n\n----  s1,s2 and s3 inserted ; s1 first, s2 last, s3 fourth:\n");
+  ApplyLL(list,pr);
+
+
+  DelElmLL(NthElmLL(list,3));
+  FprintLL(list,stdout,"\n\n---- 3rd element deleted:\n","%s  ","\n\n");
+				 /* another way to print out a list */
+
+  InsLastLL(list,string1);
+  InsBefLL( LastElmLL(list),string2);
+  printf("---- %s inserted as last, %s as penultimate:\n",string1,string2);
+  printLL(list,"%s  ");          /* yet another way to print a list */
+
+  printf("\n---- size of list: %ld\n\n", SizeLL(list));
+
+  SortLL(list, AlfComp);
+  printf("---- sorted alphabetically:\n");
+  ApplyLL(list,pr);
+
+  {
+    char **listElem;
+    printf("\n\n---- printf first char of each string: \n");
+    ForeachLL_M(list,listElem)
+      printf("%c ",(*listElem)[0]);
+  
+    printf("\n");
+  }
+
+  DestLL(list);        /* clean up and quit */
+  return 0;
+}
+.fi
+.RE
+.LP
+.LP
+.SH Example exCutPaste
+.RS -5
+.nf
+/*-------------- LL library example: cutting and pasting lists --------- */
+static char sccsid[]="@(#)94/01/03 g.matas@ee.surrey.ac.uk 6.3 exCutPaste.c";
+#include "LL.h"
+
+/*-----------------------------------------------------------------------*/
+/*
+  This example shows HOW TO:
+    - make a copy of a list (ConsCopyLL) 
+    - cut and paste a part of a list (Move..)
+    - sort a list (SortLL)
+    - print a list (printLL <read the note in LL.h on printLL usage>)
+*/
+/*-----------------------------------------------------------------------*/
+static int CompDouble (const void * p_elm1,const  void *  p_elm2)
+{ return (* (double const *)p_elm1<= * (double const *)p_elm2) ? -1 : 1 ; }
+
+/*-----------------------------------------------------------------------*/
+int main (int argc, char ** argv)
+{
+  double some_num [] = { 5.6, 3.9, 4.2, 6.7};
+  double num;
+
+  t_LL   list = ConsLL();         /*                create an empty list  */
+
+  {                     /* insert all numbers in some_num  into the list  */
+  int i;
+  for (i=0; i < sizeof(some_num)/sizeof(double); i++)
+    InsLastLL(list,some_num[i]);
+  }
+			/* add some other numbers to the end of the list  */
+  num = 7.15; InsFirstLL(list,num);
+  num = 8.80; InsLastLL(list,num);
+
+  FprintLL(list,stdout,"---- initial list of doubles:\n","%4.2lg","\n\n");
+	
+  {                                     
+    t_LL copied_list = ConsCopyLL(list);
+
+    MoveListLastLL(list,copied_list);
+    FprintLL(list,stdout,"---- list duplicated:\n","%4.2lg","\n\n");
+    DestLL(copied_list);
+  }                                     /* end of copied list scope*/
+
+  SortLL(list,CompDouble);
+  FprintLL(list,stdout,"---- list sorted :\n","%4.2lg","\n\n");
+    
+  {                                            /* and Split now  */
+    t_LL list2 = MoveTailLastLL(ConsLL(),list,NthElmLL(list,6));
+
+    printf("---- Cutting the list;\n");
+    FprintLL(list ,stdout," Elements 1-5 (list ) : ","%4.2lg","\n");
+    FprintLL(list2,stdout," Elements 6-  (list2) : ","%4.2lg","\n\n");
+    
+    MoveListFirstLL(list,list2);
+    MoveHeadFirstLL(list2,list,NthElmLL(list,3));
+    FprintLL(list,stdout,
+       "---- Elems 8- (3- elems of list2) inserted at the head of list:\n",
+       "%4.2lg","\n\n" );
+    
+    DestLL(list2);   /* destroy the list before it goes out of scope */
+  }
+    
+  DestLL(list);
+
+  return 0;   
+}
+.fi
+.RE
+.LP
+.SH Example exSortText - sorting a file alphabetically
+.RS -5
+.nf
+/*----------------- LL library example: sorting text  ------------------ */
+static char sccsid[]="@(#)94/01/05 g.matas@ee.surrey.ac.uk 6.3 exSortText.c";
+
+#include "LL.h"
+
+#include <stdio.h>                                   /* for printf, gets etc */
+#include <string.h>                                        /* for strcmp etc */
+
+/*------------------ LL library example ---------------------------------
+    1.   Read in a text file from stdin  ( sort_ex  <file)
+    2.   Sort line in alphabetical order
+    3.   print out 
+
+-----------------------------------------------------------------------*/
+static int sCmp(const void * s1, const void * s2) { return strcmp(s1,s2);}
+
+#define MAX_LINE_LENGTH 200
+int main(void)
+{
+  char  buffer[MAX_LINE_LENGTH];
+  t_LL list = ConsLL();
+
+  fprintf(stderr,"usage: exSortText <infile >outfile\n"
+		 "  sorted text from stdin follows ---->");
+
+  while(fgets(buffer,MAX_LINE_LENGTH,stdin))
+    InsLastLLf(list,strlen(buffer)+1,buffer);  
+
+  SortLL(list, sCmp);
+  printLL(list,"%S");         /* printing out the sorted file */
+
+  return 0;
+}
+.fi
+.RE
+.LP
+.SH Example exStruct - storing/accessing structures in the list
+.RS -5
+.nf
+/*----- LL library example: list of user-def structures ---------------- */
+static char sccsid[]="@(#)94/01/03 g.matas@ee.surrey.ac.uk 6.5 exStruct.c";
+
+#include "LL.h"
+#include <stdio.h>
+
+/*-----------------------------------------------------------------------*/
+/*
+   put some numbers into a linked list
+   create a list of all pairs of numbers and print it out
+*/
+
+/*-----------------------------------------------------------------------*/
+static void * PrintInt(void * p_elm)
+	  { printf("%d ",*(int*)p_elm); return NULL; }
+
+/*-----------------------------------------------------------------------*/
+int main(int argc, char ** argv)
+{
+  t_LL list  = ConsLL();
+  t_LL pairs = ConsLL();
+  
+  int *n, *sec_num;
+
+  { /* insert all numbers in some_num  into the list  */
+    int some_num [] = { 7, 3 , 8, 1, 19};
+    int i;
+    
+    for (i=0; i < sizeof(some_num)/sizeof(int); i++)
+      InsLastLL(list,some_num[i]);
+
+    printf("---- initial list of doubles:\n");
+    ApplyLL(list,PrintInt);
+    printf("\n\n");
+  }
+
+  {
+    struct int_pair { int first; int second; } temp, *p_pair;
+
+    ForeachLL_M(list,n)
+      for(sec_num = NextElmLL(n); IsElmLL(sec_num); sec_num= NextElmLL(sec_num))
+      {
+	 temp.first    = *n;
+	 temp.second   = *sec_num;
+	 InsLastLL(pairs,temp);
+      }
+	
+    printf("---- All (unordered) pairs: \n");
+    ForeachLL_M(pairs,p_pair)
+     printf("%d-%d   ",p_pair->first, p_pair->second);
+    printf("\n\n");
+    
+    DestLL(pairs);
+  }
+  DestLL(list);
+
+  return 0;
+}
+.fi
+.RE
+.LP
+.SH Example exPrintScan - using SscanLL, printLL and FprintLL
+.RS -5
+.nf
+/*----------------- LL library example: printf/scanf use --------------- */
+static char sccsid[]="@(#)94/01/03 g.matas@ee.surrey.ac.uk 6.2 exPrintScan.c";
+
+#include "LL.h"
+#include <stdio.h>
+/*-----------------------------------------------------------------------*/
+/*
+   Warning: 
+      before using SscanLL, FprintLL, printLL 
+      Read the recommendation about thier use in LL.h!
+*/
+
+/*-----------------------------------------------------------------------*/
+int main(int argc, char ** argv)
+{
+  t_LL num = ConsLL();
+  
+  char * some_num_str  = " 7 3 8 1 21 25 19 10 10 10";
+
+  SscanLL(num,some_num_str,"%d",0);         /* get numbers as ints */ 
+  printf("testing formats:\n");
+  FprintLL(num,stdout,"Plain  : ","%d ","\n");
+  FprintLL(num,stdout,"2digits: ","%2d ","\n");
+  FprintLL(num,stdout,"Element_a_line   :\n","%d\n","");
+  FprintLL(num,stdout,"Elm= - : ","%*d-","\n");
+  printf("\n");
+  
+  EmptyLL(num);                             /* remove old elms */
+  SscanLL(num,some_num_str,"%d %*d",0);     /* get odd order numbers as ints*/ 
+  FprintLL(num,stdout,"Odd Pos: ","%d ","\n");
+
+  EmptyLL(num);                             /* remove old elms */
+  SscanLL(num,some_num_str,"%d",5);         /* get first 5  numbers as ints*/ 
+  FprintLL(num,stdout,"1-5: ","%d ","\n");
+
+  DestLL(num);                      /* clean up, destroy list */ 
+  return 0;
+}
+.fi
+.RE
+.LP
+.SH Example exRead, exWrite - reading and writting into an .LL file 
+.RS -5
+.nf
+/*----------------- LL library example: writting out a list ------------ */
+static char sccsid[]="@(#)94/01/03 g.matas@ee.surrey.ac.uk 6.2 exWrite.c";
+#include "LL.h"
+
+/*-----------------------------------------------------------------------*/
+/*
+   1. Generate a list of doubles
+   2. Write it on the standard output in the .LL file format
+*/
+/*-----------------------------------------------------------------------*/
+int main (int argc, char ** argv)
+{
+  t_LL   list = ConsLL();         /*                   create an empty list  */
+
+
+  {                        /* insert all numbers in some_num  into the list  */
+    int i;
+    double some_num [] = { 5.6, 3.9, 4.2, 6.7};
+
+    for (i=0; i < sizeof(some_num)/sizeof(double); i++)
+      InsLastLL(list,some_num[i]);
+  }
+ 
+  WriteLev1LL("-",list);
+    
+  DestLL(list);
+  return 0;   
+}
+
+/*----------------- LL library example: reading an LL file ------------- */
+static char sccsid[]="@(#)94/01/03 g.matas@ee.surrey.ac.uk 6.2 exRead.c";
+
+#include "LL.h"
+
+/*-----------------------------------------------------------------------*/
+/*
+   Read a .LL file from standard input.
+   A list containing doubles is expected
+   Use exWrite to generated the correct file
+*/
+/*-----------------------------------------------------------------------*/
+int main (int argc, char ** argv)
+{
+  t_LL   list = ReadLL("-");                  /* read a list from stdin */
+
+  printLL(list,"%4.2lf ");
+
+  DestLL(list);
+  return 0;   
+}
+.fi
+.RE
+.LP
+.SH Example exSortTime - testing speed of two sort algorithms 
+.RS -5
+.nf
+/*----------------- LL library example: sort (with timming) ------------ */
+static char sccsid[]="@(#)94/01/03 g.matas@ee.surrey.ac.uk 6.4 exSortTime.c";
+
+#include "LL.h"
+
+#include <stdio.h>                                   /* for printf, gets etc */
+#include <stdlib.h>
+#include <time.h>
+
+/*------------------------------------------------------------------------*/
+static void MarkTime(char * point)
+{
+  static float last=0;
+  float curr =clock()/(float)CLOCKS_PER_SEC;
+
+  fprintf(stderr,"%6.2f  %6.2f  %s\n",curr,curr-last,point);
+  last = curr;
+}
+
+/*------------------------------------------------------------------------*/
+static int sCmp(const void * s1, const void * s2)
+{ return *(const int*)s1 - *(const int*)s2; }
+
+static void sort(int sortMethod, t_LL list)
+{                     /* sorting with timming prints */
+  MarkTime("sort start");
+  switch (sortMethod)
+  {
+    case 1: MergeSortLL(list, sCmp); break;
+    case 2: SysSortLL(list, sCmp); break;
+
+    default:
+      fprintf(stderr,"choose 1, 2, or 3 for the sorting alg.!\n");
+      exit(1);
+  }
+  MarkTime("sort end");
+  printf("      check elems; 2nd: %d  999th: %d\n",
+           *(int*)NthElmLL(list,2), *(int*)NthElmLL(list,999));
+
+}  
+
+/*------------------ LL library example: sorting ------------------------*/
+int main(int argc, char ** argv)
+{
+  int numbers=10;
+  int sortMethod = 1;
+
+  int i;
+  t_LL list = ConsLL();
+
+  if(argc!=3)
+  {
+    fprintf(stderr,"usage: msort_time.c sorting_alg. number_of_ints_to_sort\n"
+		   "  sorting_alg: 1-MergeSortLL 2-SysSortLL (ie.qsort) \n");
+    exit(-1);
+  }
+
+  sscanf(argv[1],"%d",&sortMethod );
+  sscanf(argv[2],"%d",&numbers );
+
+  srand(0);            /* for testing I want the random seq. not to change*/
+  for(i=0;i<numbers;i++)
+  {                      /* building a list of random numbers */
+    int r = rand();      /* the randomness is really not that important */
+    InsLastLL(list,r);
+  }
+
+  printf("-------------------- sorting a random sequence \n");
+  sort(sortMethod,list);
+
+  printf("-------------------- sorting an already sorted list \n");
+  sort(sortMethod,list);    
+
+  printf("-------------------- sorting a reversed list  \n");
+  ReverseLL(list);
+  sort(sortMethod,list);   
+
+  LinkAftLL(LastElmLL(list),  UnlinkLL(FirstElmLL(list)));
+			    /* unlink first and link it after last */
+			    /* i.e. move the first element after the last */
+  printf("-------------------- sort an almost sorted list, first is last\n");
+  sort(sortMethod,list);    /* sort list almost sorted (only first is last*/
+
+  ConsistentLL(list);
+
+  return 0;
+}
+
+.fi
+.RE
+
+.SH SEE ALSO
+qsort(3), examples provided with the LL installation
+.SH BUGS
+
+.SH AUTHOR
+George (Jiri) Matas, University of Surrey, g.matas@ee.surrey.ac.uk. 
+.LP
+The idea of representing a list by a circular list with a dummy
+node was picked form the Anasazi Linked List Utilities by Duane Morse
+(duane@anasaz). The MergeSort code was kindly provided by David
+Kastrup(dak@pool.informatik.rwth-aachen.de). The design of this
+library was influenced by numerous discussion with Radek Marik 
+(r.marik@ee.surrey.ac.uk). 
+

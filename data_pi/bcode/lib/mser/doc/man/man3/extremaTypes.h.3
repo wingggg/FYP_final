@@ -1,0 +1,106 @@
+.TH "extremaTypes.h" 3 "22 Oct 2006" "Doxygen" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+extremaTypes.h \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <LL.h>\fP
+.br
+\fC#include <vector>\fP
+.br
+\fC#include 'extremaConfig.h'\fP
+.br
+
+.SS "Namespaces"
+
+.in +1c
+.ti -1c
+.RI "namespace \fBextrema\fP"
+.br
+.in -1c
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBextrema::t_ipoint\fP"
+.br
+.RI "\fIInternal structure, holds 2D point coordinates. \fP"
+.ti -1c
+.RI "struct \fBextrema::s_sortpixels\fP"
+.br
+.RI "\fIInternal structure with intensity histogram. \fP"
+.ti -1c
+.RI "struct \fBextrema::s_region\fP"
+.br
+.RI "\fIInternal region structure. \fP"
+.ti -1c
+.RI "struct \fBextrema::s_region_equiv\fP"
+.br
+.RI "\fIInternal structure with a node of the label equivalency tree. \fP"
+.ti -1c
+.RI "struct \fBextrema::s_thresh_par\fP"
+.br
+.RI "\fIInternal structure with processed detector's parameters. \fP"
+.ti -1c
+.RI "struct \fBextrema::s_borderpixel\fP"
+.br
+.RI "\fIStructure with pixel of the extended boundary. \fP"
+.ti -1c
+.RI "struct \fBextrema::s_thresh_def\fP"
+.br
+.RI "\fIInternal structure holding threshold paramaters. \fP"
+.in -1c
+.SS "Defines"
+
+.in +1c
+.ti -1c
+.RI "#define \fBc_maxByte\fP   256"
+.br
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "typedef unsigned int \fBextrema::t_label\fP"
+.br
+.ti -1c
+.RI "typedef \fBextrema::s_sortpixels\fP \fBextrema::t_sortpixels\fP"
+.br
+.RI "\fIInternal structure with intensity histogram. \fP"
+.ti -1c
+.RI "typedef unsigned int \fBextrema::t_mregion\fP"
+.br
+.ti -1c
+.RI "typedef \fBextrema::s_region\fP \fBextrema::t_region\fP"
+.br
+.RI "\fIInternal region structure. \fP"
+.ti -1c
+.RI "typedef \fBextrema::s_region_equiv\fP \fBextrema::t_region_equiv\fP"
+.br
+.RI "\fIInternal structure with a node of the label equivalency tree. \fP"
+.ti -1c
+.RI "typedef \fBextrema::s_thresh_par\fP \fBextrema::t_thresh_par\fP"
+.br
+.RI "\fIInternal structure with processed detector's parameters. \fP"
+.ti -1c
+.RI "typedef \fBextrema::s_borderpixel\fP \fBextrema::t_borderpixel\fP"
+.br
+.RI "\fIStructure with pixel of the extended boundary. \fP"
+.ti -1c
+.RI "typedef std::vector< \fBt_borderpixel\fP > \fBextrema::point_vector\fP"
+.br
+.RI "\fIVector with extended boundary. \fP"
+.ti -1c
+.RI "typedef \fBextrema::s_thresh_def\fP \fBextrema::t_thresh_def\fP"
+.br
+.RI "\fIInternal structure holding threshold paramaters. \fP"
+.in -1c
+.SH "Define Documentation"
+.PP 
+.SS "#define c_maxByte   256"
+.PP
+.SH "Author"
+.PP 
+Generated automatically by Doxygen from the source code.
