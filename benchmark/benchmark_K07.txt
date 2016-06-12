@@ -1,6 +1,0 @@
-/home/karenng/Desktop/FYP_final/data/Background_test/K07/IMG_0280.JPG 0
-/home/karenng/Desktop/FYP_final/data/Background_test/K07/IMG_0283.JPG 0
-/home/karenng/Desktop/FYP_final/data/Background_test/K07/IMG_0289.JPG 1 5
-/home/karenng/Desktop/FYP_final/data/Background_test/K07/IMG_0292.JPG 1 3 4 5 6 7 8
-/home/karenng/Desktop/FYP_final/data/Background_test/K07/IMG_0295.JPG 1 5 6 7 
-/home/karenng/Desktop/FYP_final/data/Background_test/K07/IMG_0298.JPG 1 5 7
