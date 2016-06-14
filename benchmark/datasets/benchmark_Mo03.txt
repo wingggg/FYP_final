@@ -1,0 +1,5 @@
+/home/karenng/Desktop/FYP_final/data/Background_test/Mo03/IMG_0949.JPG 0
+/home/karenng/Desktop/FYP_final/data/Background_test/Mo03/IMG_0952.JPG 0
+/home/karenng/Desktop/FYP_final/data/Background_test/Mo03/IMG_0955.JPG 0
+/home/karenng/Desktop/FYP_final/data/Background_test/Mo03/IMG_0958.JPG 1 1 2
+/home/karenng/Desktop/FYP_final/data/Background_test/Mo03/IMG_0961.JPG 1 0 1

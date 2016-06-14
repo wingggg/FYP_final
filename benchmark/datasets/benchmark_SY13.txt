@@ -1,0 +1,7 @@
+/home/karenng/Desktop/FYP_final/data/Background_test/SY13/IMG_0160.JPG 1 2 5
+/home/karenng/Desktop/FYP_final/data/Background_test/SY13/IMG_0163.JPG 0
+/home/karenng/Desktop/FYP_final/data/Background_test/SY13/IMG_0166.JPG 0
+/home/karenng/Desktop/FYP_final/data/Background_test/SY13/IMG_0169.JPG 0
+/home/karenng/Desktop/FYP_final/data/Background_test/SY13/IMG_0172.JPG 1 2 5 8
+/home/karenng/Desktop/FYP_final/data/Background_test/SY13/IMG_0175.JPG 1 2 5 8
+/home/karenng/Desktop/FYP_final/data/Background_test/SY13/IMG_0178.JPG 1 2 5 8

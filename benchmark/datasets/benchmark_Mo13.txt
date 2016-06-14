@@ -1,0 +1,9 @@
+/home/karenng/Desktop/FYP_final/data/Background_test/Mo13/IMG_0391.JPG 1 4 5
+/home/karenng/Desktop/FYP_final/data/Background_test/Mo13/IMG_0394.JPG 1 3 4
+/home/karenng/Desktop/FYP_final/data/Background_test/Mo13/IMG_0397.JPG 1 3
+/home/karenng/Desktop/FYP_final/data/Background_test/Mo13/IMG_0400.JPG 1 0 1 2 3 4 5 6 7 8
+/home/karenng/Desktop/FYP_final/data/Background_test/Mo13/IMG_0403.JPG 1 0 3 6
+/home/karenng/Desktop/FYP_final/data/Background_test/Mo13/IMG_0406.JPG 0
+/home/karenng/Desktop/FYP_final/data/Background_test/Mo13/IMG_0409.JPG 1 2 5
+/home/karenng/Desktop/FYP_final/data/Background_test/Mo13/IMG_0412.JPG 1 1 2 4 5 7 8
+/home/karenng/Desktop/FYP_final/data/Background_test/Mo13/IMG_0415.JPG 1 0 1 2 3 4 6 7

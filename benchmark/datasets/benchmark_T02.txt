@@ -1,0 +1,28 @@
+/home/karenng/Desktop/FYP_final/data/Background_test/T02/IMG_0013.JPG 0
+/home/karenng/Desktop/FYP_final/data/Background_test/T02/IMG_0016.JPG 0
+/home/karenng/Desktop/FYP_final/data/Background_test/T02/IMG_0022.JPG 0
+/home/karenng/Desktop/FYP_final/data/Background_test/T02/IMG_0040.JPG 0
+/home/karenng/Desktop/FYP_final/data/Background_test/T02/IMG_0043.JPG 0
+/home/karenng/Desktop/FYP_final/data/Background_test/T02/IMG_0046.JPG 0
+/home/karenng/Desktop/FYP_final/data/Background_test/T02/IMG_0058.JPG 0
+/home/karenng/Desktop/FYP_final/data/Background_test/T02/IMG_0067.JPG 0
+/home/karenng/Desktop/FYP_final/data/Background_test/T02/IMG_0073.JPG 0
+/home/karenng/Desktop/FYP_final/data/Background_test/T02/IMG_0082.JPG 0
+/home/karenng/Desktop/FYP_final/data/Background_test/T02/IMG_0085.JPG 0
+/home/karenng/Desktop/FYP_final/data/Background_test/T02/IMG_0088.JPG 0
+/home/karenng/Desktop/FYP_final/data/Background_test/T02/IMG_0097.JPG 0
+/home/karenng/Desktop/FYP_final/data/Background_test/T02/IMG_0103.JPG 0
+/home/karenng/Desktop/FYP_final/data/Background_test/T02/IMG_0106.JPG 0
+/home/karenng/Desktop/FYP_final/data/Background_test/T02/IMG_0112.JPG 0
+/home/karenng/Desktop/FYP_final/data/Background_test/T02/IMG_0121.JPG 0
+/home/karenng/Desktop/FYP_final/data/Background_test/T02/IMG_0124.JPG 0
+/home/karenng/Desktop/FYP_final/data/Background_test/T02/IMG_0130.JPG 0
+/home/karenng/Desktop/FYP_final/data/Background_test/T02/IMG_0265.JPG 1 0 1 3 4 5 6 7
+/home/karenng/Desktop/FYP_final/data/Background_test/T02/IMG_0268.JPG 1 0 1 3 4 5 6 7
+/home/karenng/Desktop/FYP_final/data/Background_test/T02/IMG_0271.JPG 1 4 5 7 8
+/home/karenng/Desktop/FYP_final/data/Background_test/T02/IMG_0274.JPG 1 3 5 6
+/home/karenng/Desktop/FYP_final/data/Background_test/T02/IMG_0277.JPG 1 3 4 5 6 7
+/home/karenng/Desktop/FYP_final/data/Background_test/T02/IMG_0565.JPG 1 0 1 2 3 4 5 6 7 8
+/home/karenng/Desktop/FYP_final/data/Background_test/T02/IMG_0568.JPG 1 0 1 2 3 4 5 6 7 8
+/home/karenng/Desktop/FYP_final/data/Background_test/T02/IMG_0571.JPG 1 0 1 2 3 4 5 6 7 8
+/home/karenng/Desktop/FYP_final/data/Background_test/T02/IMG_0574.JPG 1 0 2 3 4 5 6 7 8
