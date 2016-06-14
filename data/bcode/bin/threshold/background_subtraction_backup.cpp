@@ -741,7 +741,7 @@ int main(int argc, char **argv){
     par->put("image_height.int",280);
     par->put("min_coverage.float",0.007);
     par->put("max_coverage.float",0.80);
-    par->put("confidence_thres.float",0.40);
+    par->put("confidence_thres.float",0.20);
     par->put("conf_factor.float",10);
 
     for(int i=1;i<argc;i++){ 
