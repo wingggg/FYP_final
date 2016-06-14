@@ -30,12 +30,12 @@ load('runtime_results');
 % vector(3,:) = runtime_all_threading(:)';
 % vector(4,:) = runtime_all_parallelising(:,2)';
 
-figure
-b = bar(vector, 'stacked');
-title('Total Execution Time For Complete Dataset')
-xlabel('Data Subsets');
-ylabel('Execution Time (seconds)');
-for i=1:33
-    b(i).EdgeColor = 'w';
-end
-legend('1: PC','2: Before optimisation','3: Multi-threading','4: Parallelisation');
+% figure
+% b = bar(vector, 'stacked');
+% title('Total Execution Time For Complete Dataset')
+% xlabel('Data Subsets');
+% ylabel('Execution Time (seconds)');
+% for i=1:33
+%     b(i).EdgeColor = 'w';
+% end
+% legend('1: PC','2: Before optimisation','3: Multi-threading','4: Parallelisation');
