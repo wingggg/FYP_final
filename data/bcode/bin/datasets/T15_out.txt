@@ -8,4 +8,4 @@
 /home/karenng/Desktop/FYP_final/data/Background_test/T15/IMG_0295.JPG 0 133 61 6 8 0.80693 0.000784314
 /home/karenng/Desktop/FYP_final/data/Background_test/T15/IMG_0298.JPG 0 0 0 0 0 0 0
 /home/karenng/Desktop/FYP_final/data/Background_test/T15/IMG_0301.JPG 0 159 59 14 6 0.820763 0.00137255
-/home/karenng/Desktop/FYP_final/data/Background_test/T15/IMG_0304.JPG 0 118 59 46 10 0.147313 0.00751634
+/home/karenng/Desktop/FYP_final/data/Background_test/T15/IMG_0304.JPG 1 118 59 46 10 0.147313 0.00751634

@@ -4,6 +4,6 @@
 /home/karenng/Desktop/FYP_final/data/Background_test/PI10/IMG_0169.JPG 1 9 90 158 80 0.349794 0.206536
 /home/karenng/Desktop/FYP_final/data/Background_test/PI10/IMG_0172.JPG 1 148 78 122 86 0.694769 0.171438
 /home/karenng/Desktop/FYP_final/data/Background_test/PI10/IMG_0175.JPG 1 112 119 214 60 0.548903 0.209804
-/home/karenng/Desktop/FYP_final/data/Background_test/PI10/IMG_0178.JPG 0 333 58 4 121 0.104034 0.0079085
+/home/karenng/Desktop/FYP_final/data/Background_test/PI10/IMG_0178.JPG 1 333 58 4 121 0.104034 0.0079085
 /home/karenng/Desktop/FYP_final/data/Background_test/PI10/IMG_0181.JPG 1 169 1 68 60 0.334723 0.0666667
 /home/karenng/Desktop/FYP_final/data/Background_test/PI10/IMG_0184.JPG 0 0 0 0 0 0 0

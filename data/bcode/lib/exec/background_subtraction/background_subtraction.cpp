@@ -53,42 +53,30 @@ void labelSegments(DARY *output, int &labels_nb){
 
                 if(output->fel[j][i-1] > 0){
                     p1=output->fel[j][i-1]; 
-
-                    cout << " test1 " << p1;
-
+                    //cout << " test1 " << p1;
                     p1=getRoot(conn,p1);
-
-                    cout << p1;
+                    //cout << p1;
                 }
                 if(output->fel[j-1][i-1]>0){
                     p2=output->fel[j-1][i-1];    
-
-                    cout << " test2 " << p2;
-
+                    //cout << " test2 " << p2;
                     p2=getRoot(conn,p2);
-
-                    cout << p2;
+                    //cout << p2;
                 } 
                 if(output->fel[j-1][i]>0){
                     p3=output->fel[j-1][i];
-
-                    cout << " test3 " << p3;
-
+                    //cout << " test3 " << p3;
                     p3=getRoot(conn,p3);
-
-                    cout << p3;
+                    //cout << p3;
                 } 
                 if(output->fel[j-1][i+1]>0){
                     p4=output->fel[j-1][i+1];
-
-                    cout << " test4 " << p4;
-
+                    //cout << " test4 " << p4;
                     p4=getRoot(conn,p4);
-
-                    cout << " test4 " << p4;
+                    //cout << " test4 " << p4;
                 }
 
-                cout << endl;
+                //cout << endl;
 
                 pmin=(p1<p2)?p1:p2; pmin=(pmin<p3)?pmin:p3; pmin=(pmin<p4)?pmin:p4;
                 if(pmin==INT_MAX){
@@ -753,7 +741,7 @@ int main(int argc, char **argv){
     par->put("image_height.int",280);
     par->put("min_coverage.float",0.007);
     par->put("max_coverage.float",0.80);
-    par->put("confidence_thres.float",0.24);
+    par->put("confidence_thres.float",0.30);
     par->put("conf_factor.float",10);
 
     for(int i=1;i<argc;i++){ 
