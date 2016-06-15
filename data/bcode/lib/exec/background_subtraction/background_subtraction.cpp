@@ -555,10 +555,10 @@ void loadImages(vector<char *> filenames, int start, vector<DARY *> &images, Par
         delete imin;
 
         //TEST
-        images.push_back(sim);        
+        // images.push_back(sim);        
         images.push_back(new DARY(sim));        //images[0]
         images.push_back(new DARY(sim));        //images[1]
-        // images.push_back(sim);  //              //images[2]
+        images.push_back(sim);  //              //images[2]
         //TESTEND
 
         imin=new DARY(filenames[start+1]);
@@ -658,25 +658,25 @@ int selectBBs(vector<BB> &bbs, Params *par){
   float minCov = par->getValue("min_coverage.float");
   float maxCov = par->getValue("max_coverage.float");
   float conf = par->getValue("confidence_thres.float");
-  if(bbs[0].coverage>maxCov || bbs[0].coverage<minCov || bbs[0].confidence < conf){
-    bbs[0].valid=0;
-    //largest=-1;
-  }
+  // if(bbs[0].coverage>maxCov || bbs[0].coverage<minCov || bbs[0].confidence < conf){
+  //   bbs[0].valid=0;
+  //   //largest=-1;
+  // }
   
-//   for(uint i=1;i<bbs.size();i++){
-// 	 if(bbs[0].valid==0 ||  bbs[i].coverage<minCov || bbs[i].coverage>maxCov || bbs[i].confidence < conf){
-// 	   bbs[i].valid=0;
-// 	 }else{
-// 	   if(bbs[0].valid==1 && bbs[i].coverage>bbs[largest].coverage)
-// 	    largest=i;
-// 	    //coutBB(bbs[i]);
-// 	 }
-//    //  cout << i << " ";coutBB(bbs[i]);
-//  }
+  for(uint i=1;i<bbs.size();i++){   //find largest bbs
+	 if(bbs[0].valid==0 ||  bbs[i].coverage<minCov || bbs[i].coverage>maxCov || bbs[i].confidence < conf){
+	   bbs[i].valid=0;
+	 }else{
+	   if(bbs[0].valid==1 && bbs[i].coverage>bbs[largest].coverage)
+	    largest=i;
+	    //coutBB(bbs[i]);
+	 }
+   //  cout << i << " ";coutBB(bbs[i]);
+ }
  
-//  if(largest>=0){
-//     if(bbs[largest].coverage<minCov || bbs[largest].confidence < conf)bbs[0].valid=0;
-//  }
+ if(largest>=0){
+    if(bbs[largest].coverage<minCov || bbs[largest].confidence < conf)bbs[0].valid=0;
+ }
  
  return largest;
   
@@ -690,7 +690,7 @@ int processSet(Params *par, vector<char *> filenames, int findex, vector<BB> &bb
     // cout << " OK 0 " << findex <<  " "<< filenames[findex]<< endl;
     loadImages(filenames, findex, images, par);
     // cout << " OK 1 " << endl;
-    if(findex>0){ computeDifferences(images); }
+    if(findex>=0){ computeDifferences(images); }
     // cout << " OK 2 " << endl;
     normalizeDifference(images);
 
