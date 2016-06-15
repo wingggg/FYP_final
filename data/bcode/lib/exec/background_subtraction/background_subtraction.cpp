@@ -658,10 +658,10 @@ int selectBBs(vector<BB> &bbs, Params *par){
   float minCov = par->getValue("min_coverage.float");
   float maxCov = par->getValue("max_coverage.float");
   float conf = par->getValue("confidence_thres.float");
-  // if(bbs[0].coverage>maxCov || bbs[0].coverage<minCov || bbs[0].confidence < conf){
-  //   bbs[0].valid=0;
-  //   //largest=-1;
-  // }
+  if(bbs[0].coverage>maxCov || bbs[0].coverage<minCov || bbs[0].confidence < conf){
+    bbs[0].valid=0;
+    //largest=-1;
+  }
   
   for(uint i=1;i<bbs.size();i++){   //find largest bbs
 	 if(bbs[0].valid==0 ||  bbs[i].coverage<minCov || bbs[i].coverage>maxCov || bbs[i].confidence < conf){
@@ -690,7 +690,7 @@ int processSet(Params *par, vector<char *> filenames, int findex, vector<BB> &bb
     // cout << " OK 0 " << findex <<  " "<< filenames[findex]<< endl;
     loadImages(filenames, findex, images, par);
     // cout << " OK 1 " << endl;
-    if(findex>=0){ computeDifferences(images); }
+    if(findex>0){ computeDifferences(images); }
     // cout << " OK 2 " << endl;
     normalizeDifference(images);
 
