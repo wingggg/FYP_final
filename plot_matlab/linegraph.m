@@ -16,3 +16,5 @@
 % xlabel('Execution Time');
 % ylabel('Accuracy');
 % legend('Valid','Regions');
+
+load('runtime_results');

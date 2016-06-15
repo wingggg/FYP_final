@@ -8,7 +8,7 @@
     y_blockSize = y_size/3;
 
 %% Read files
-file1 = fopen('./data/bcode/bin/outputAll.txt');
+file1 = fopen('./data/bcode/bin/threshold/outputAll40.txt');
 outString = textscan(file1, '%s');
 outString = outString{1,1};
 fclose(file1);
@@ -18,7 +18,7 @@ benchString = textscan(file2, '%s');
 benchString = benchString{1,1};
 fclose(file2);
 
-outfile = fopen('./benchmark/testResultsAll.txt', 'wt');
+outfile = fopen('./data/bcode/bin/threshold/testResultsAll40.txt', 'wt');
 
 %% Count number of files being processed
 numFiles = 0;
