@@ -1,4 +1,4 @@
-/home/karenng/Desktop/FYP_final/data/Background_test/MT30/IMG(24).jpg 0 0 20 282 144 0.092162 0.663529
+/home/karenng/Desktop/FYP_final/data/Background_test/MT30/IMG(24).jpg 1 23 12 292 154 0.953639 0.734771
 /home/karenng/Desktop/FYP_final/data/Background_test/MT30/IMG(27).jpg 0 9 18 314 140 0.0576311 0.718301
 /home/karenng/Desktop/FYP_final/data/Background_test/MT30/IMG(30).jpg 0 74 11 265 168 0.0234255 0.727451
 /home/karenng/Desktop/FYP_final/data/Background_test/MT30/IMG(33).jpg 0 30 23 309 148 0.030811 0.747255

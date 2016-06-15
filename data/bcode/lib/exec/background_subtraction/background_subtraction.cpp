@@ -555,10 +555,10 @@ void loadImages(vector<char *> filenames, int start, vector<DARY *> &images, Par
         delete imin;
 
         //TEST
-        // images.push_back(sim);        
+        images.push_back(sim);        
         images.push_back(new DARY(sim));        //images[0]
         images.push_back(new DARY(sim));        //images[1]
-        images.push_back(sim);  //              //images[2]
+        // images.push_back(sim);  //              //images[2]
         //TESTEND
 
         imin=new DARY(filenames[start+1]);
@@ -690,7 +690,7 @@ int processSet(Params *par, vector<char *> filenames, int findex, vector<BB> &bb
     // cout << " OK 0 " << findex <<  " "<< filenames[findex]<< endl;
     loadImages(filenames, findex, images, par);
     // cout << " OK 1 " << endl;
-    if(findex>=0){ computeDifferences(images); }
+    if(findex>0){ computeDifferences(images); }
     // cout << " OK 2 " << endl;
     normalizeDifference(images);
 

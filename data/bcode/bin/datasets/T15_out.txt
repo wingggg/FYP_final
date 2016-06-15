@@ -1,4 +1,4 @@
-/home/karenng/Desktop/FYP_final/data/Background_test/T15/IMG_0229.JPG 0 0 0 0 0 0 0
+/home/karenng/Desktop/FYP_final/data/Background_test/T15/IMG_0229.JPG 1 26 8 286 158 0.59888 0.738366
 /home/karenng/Desktop/FYP_final/data/Background_test/T15/IMG_0232.JPG 0 0 0 0 0 0 0
 /home/karenng/Desktop/FYP_final/data/Background_test/T15/IMG_0235.JPG 1 0 57 45 56 0.487177 0.0411765
 /home/karenng/Desktop/FYP_final/data/Background_test/T15/IMG_0238.JPG 1 8 37 70 74 0.375857 0.0846405
