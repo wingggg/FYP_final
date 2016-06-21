@@ -739,8 +739,8 @@ int main(int argc, char **argv){
     // par->put("match_images.int",1.0);
     par->put("image_width.int",340);
     par->put("image_height.int",280);
-    par->put("min_coverage.float",0.070);
-    par->put("max_coverage.float",0.80);
+    par->put("min_coverage.float",0.007);
+    par->put("max_coverage.float",0.90);
     par->put("confidence_thres.float",0.24);
     par->put("conf_factor.float",10);
 

@@ -3,9 +3,9 @@
 # backup
 cp ../../lib/exec/background_subtraction/background_subtraction.cpp background_subtraction_backup.cpp
 
-cp background_subtraction50.cpp ../../lib/exec/background_subtraction/background_subtraction.cpp
-bash ../../../../run.sh
-cp ../outputAll.txt outputAll50.txt
+# cp background_subtraction50.cpp ../../lib/exec/background_subtraction/background_subtraction.cpp
+# bash ../../../../run.sh
+# cp ../outputAll.txt outputAll50.txt
 
 # cp background_subtraction52.cpp ../../lib/exec/background_subtraction/background_subtraction.cpp
 # bash ../../../../run.sh
@@ -19,13 +19,13 @@ cp ../outputAll.txt outputAll50.txt
 # bash ../../../../run.sh
 # cp ../outputAll.txt outputAll56.txt
 
-# cp background_subtraction58.cpp ../../lib/exec/background_subtraction/background_subtraction.cpp
-# bash ../../../../run.sh
-# cp ../outputAll.txt outputAll58.txt
-
-cp background_subtraction60.cpp ../../lib/exec/background_subtraction/background_subtraction.cpp
+cp background_subtraction58.cpp ../../lib/exec/background_subtraction/background_subtraction.cpp
 bash ../../../../run.sh
-cp ../outputAll.txt outputAll60.txt
+cp ../outputAll.txt outputAll58.txt
+
+# cp background_subtraction60.cpp ../../lib/exec/background_subtraction/background_subtraction.cpp
+# bash ../../../../run.sh
+# cp ../outputAll.txt outputAll60.txt
 
 # cp background_subtraction62.cpp ../../lib/exec/background_subtraction/background_subtraction.cpp
 # bash ../../../../run.sh
