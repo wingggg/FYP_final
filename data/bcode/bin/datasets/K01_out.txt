@@ -1,8 +1,8 @@
-/home/karenng/Desktop/FYP_final/data/Background_test/K01/IMG_0094.JPG 1 25 10 288 152 0.64496 0.715294
-/home/karenng/Desktop/FYP_final/data/Background_test/K01/IMG_0097.JPG 0 114 69 225 28 0.0638254 0.102941
-/home/karenng/Desktop/FYP_final/data/Background_test/K01/IMG_0100.JPG 1 0 134 14 44 0.721835 0.0100654
-/home/karenng/Desktop/FYP_final/data/Background_test/K01/IMG_0103.JPG 0 0 128 8 26 0.748582 0.00339869
-/home/karenng/Desktop/FYP_final/data/Background_test/K01/IMG_0106.JPG 0 289 129 16 8 0.841224 0.0020915
-/home/karenng/Desktop/FYP_final/data/Background_test/K01/IMG_0109.JPG 1 96 145 76 32 0.531171 0.0397386
-/home/karenng/Desktop/FYP_final/data/Background_test/K01/IMG_0112.JPG 0 0 55 28 14 0.116593 0.00640523
-/home/karenng/Desktop/FYP_final/data/Background_test/K01/IMG_0115.JPG 0 113 117 80 56 0.196504 0.0732026
+/home/karenng/Desktop/FYP_final/data/Background_test/K01/IMG_0094.JPG 0 25 10 288 152 0.689126 0.715294
+/home/karenng/Desktop/FYP_final/data/Background_test/K01/IMG_0097.JPG 0 121 70 218 26 0.0673971 0.0926144
+/home/karenng/Desktop/FYP_final/data/Background_test/K01/IMG_0100.JPG 1 0 136 17 43 0.679278 0.0119444
+/home/karenng/Desktop/FYP_final/data/Background_test/K01/IMG_0103.JPG 0 0 125 8 42 0.499907 0.0054902
+/home/karenng/Desktop/FYP_final/data/Background_test/K01/IMG_0106.JPG 0 290 129 14 8 1.18643 0.00183007
+/home/karenng/Desktop/FYP_final/data/Background_test/K01/IMG_0109.JPG 1 89 144 86 32 0.519738 0.0449673
+/home/karenng/Desktop/FYP_final/data/Background_test/K01/IMG_0112.JPG 0 4 57 22 10 0.39789 0.00359477
+/home/karenng/Desktop/FYP_final/data/Background_test/K01/IMG_0115.JPG 1 115 116 76 58 0.259076 0.0720261
