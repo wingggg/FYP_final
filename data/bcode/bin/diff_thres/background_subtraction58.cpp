@@ -729,7 +729,7 @@ int main(int argc, char **argv){
     par->put("header_size.int",30.0);
     par->put("footnote_size.int",30.0);  
     par->put("camera_type.char","reconyx"); // can change camera type
-    par->put("diff_thres.int",70.0);
+    par->put("diff_thres.int",58.0);
     par->put("median_size.int",9.0);
     par->put("output_image.char","out.png");
     par->put("input_images.char","images.txt");
