@@ -2,7 +2,7 @@ function R = findRegion(x_coord, y_coord)
     %% Generate look-up table
     % Image dimensions
     x_size = 340;
-    y_size = 180;
+    y_size = 280;
     x_blockSize = floor(x_size/3);
     y_blockSize = floor(y_size/3);
 
